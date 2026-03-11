@@ -1,0 +1,3 @@
+# What will be absurd in 100 years?
+
+Write your content here...
