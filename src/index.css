@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+.markdown-content {
+  @apply leading-relaxed text-[#333] dark:text-[#ccc];
+}
+
+.markdown-content h1 {
+  @apply text-2xl font-medium mt-12 mb-6 text-[#1a1a1a] dark:text-[#f5f5f5];
+}
+
+.markdown-content h2 {
+  @apply text-xl font-medium mt-10 mb-4 text-[#1a1a1a] dark:text-[#f5f5f5];
+}
+
+.markdown-content h3 {
+  @apply text-lg font-medium mt-8 mb-3 text-[#1a1a1a] dark:text-[#f5f5f5];
+}
+
+.markdown-content p {
+  @apply mb-6;
+}
+
+.markdown-content ul {
+  @apply list-disc list-inside mb-6 space-y-2;
+}
+
+.markdown-content li {
+  @apply text-[#333] dark:text-[#ccc];
+}
+
+.markdown-content img {
+  @apply rounded-lg my-12 w-full h-auto object-cover border border-[#f0f0f0] dark:border-[#333];
+}
+
+.markdown-content a {
+  @apply text-[#1a1a1a] dark:text-[#f5f5f5] underline decoration-[#ccc] dark:decoration-[#555] hover:decoration-[#1a1a1a] dark:hover:decoration-[#fff] transition-colors underline-offset-4;
+}
+
+.markdown-content blockquote {
+  @apply border-l-2 border-[#f0f0f0] dark:border-[#333] pl-6 italic text-[#666] dark:text-[#999] my-8;
+}
