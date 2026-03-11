@@ -45,5 +45,5 @@ export const articles: Article[] = [
   { title: "Annual Review 2023", date: "Jan 4", slug: "annual-review-2023" },
   { title: "What will be absurd in 100 years?", date: "Dec 8", slug: "absurd-in-100-years" },
   { title: "Design files end up in the trash", date: "Nov 24", slug: "design-files-trash" },
-  { title: "Thoughts on AI & feedback", date: "Nov 18", slug: "ai-and-feedback" },
+  { title: "Thoughts on 2 consecutive 8.5 scores", date: "Nov 18", slug: "ai-and-feedback" },
 ];

@@ -10,7 +10,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Twitter, Linkedin, ArrowUpRight, ArrowLeft, Moon, Sun } from 'lucide-react';
+import { ArrowUpRight, ArrowLeft, Moon, Sun } from 'lucide-react';
 import { annotate } from 'rough-notation';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -66,7 +66,7 @@ export default function App() {
   useEffect(() => {
     if (cambridgeRef.current) {
       const annotation = annotate(cambridgeRef.current, {
-        type: 'box',
+        type: 'underline',
         color: '#93c5fd',
         strokeWidth: 2,
         padding: 0.1,
@@ -102,9 +102,9 @@ export default function App() {
                     {darkMode ? <Sun className="w-5 h-5 text-[#f5f5f5]" /> : <Moon className="w-5 h-5 text-[#1a1a1a]" />}
                   </button>
                 </div>
-                <h1 className="text-xl font-medium mb-4">Umerov Javokhir</h1>
+                <h1 className="text-xl font-medium mb-4">Umerov Javokhir (Mitro)</h1>
                 <p className="text-[#666] dark:text-[#999] leading-relaxed mb-6">
-                  I’m Javokhir, English teacher and founder of @javokhirsielts. Currently IELTS teacher  at{' '}
+                  I’m Mitro, English teacher and founder of @javokhirsielts. Currently IELTS teacher  at{' '}
                   <a 
                     ref={cambridgeRef}
                     href="https://cambridgeonline.uz/" 
@@ -206,7 +206,7 @@ export default function App() {
         </AnimatePresence>
 
         <footer className="mt-32 pt-12 border-t border-[#f0f0f0] dark:border-[#333] text-sm text-[#999] dark:text-[#666]">
-          <p>© {new Date().getFullYear()} Marc Astbury</p>
+          <p>© {new Date().getFullYear()} Javokhir</p>
         </footer>
       </div>
     </div>

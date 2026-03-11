@@ -1,20 +1,34 @@
 <div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+<img width="1200" height="475" alt="Javokhir IELTS Banner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# Run and deploy your AI Studio app
+# Javokhir IELTS - Personal Portfolio & Blog
 
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/eb8b67d8-3bda-41a8-b8f2-e0785dabb045
+A personal portfolio and blog for Javokhir, an IELTS teacher and founder of @javokhirsielts.
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
+**Prerequisites:** Node.js
 
 
 1. Install dependencies:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
+2. Run the app:
    `npm run dev`
+
+## Tech Stack
+
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS v4
+- Motion (framer-motion alternative)
+- Rough Notation
+- React Markdown
+
+## Features
+
+- Dark/Light mode
+- Article markdown rendering
+- Smooth animations
+- Responsive design
