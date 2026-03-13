@@ -31,9 +31,41 @@ export interface Article {
   date: string;
   slug: string;
   content?: string;
+  isNew?: boolean;
 }
 
-export const articles: Article[] = [
+// Helper to parse date string to comparable value
+// Current time: 2026-03-13
+const parseDate = (dateStr: string): number => {
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  
+  // Month mapping
+  const months: Record<string, number> = {
+    'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
+    'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
+  };
+  
+  const [monthStr, dayStr] = dateStr.split(' ');
+  const month = months[monthStr] ?? 0;
+  const day = parseInt(dayStr, 10);
+  
+  // Determine year based on article context
+  // Annual reviews are published in January of the following year
+  if (dateStr.includes('Annual Review 2025')) return new Date(2025, 0, 2).getTime();
+  if (dateStr.includes('Annual Review 2024')) return new Date(2024, 0, 4).getTime();
+  if (dateStr.includes('Annual Review 2023')) return new Date(2023, 0, 4).getTime();
+  
+  // For regular articles: if month > current month (March), it's last year
+  // Otherwise it's this year
+  const monthNum = months[monthStr] ?? 0;
+  const year = monthNum > now.getMonth() ? currentYear - 1 : currentYear;
+  
+  return new Date(year, month, day).getTime();
+};
+
+// Raw articles data (unsorted)
+const rawArticles: Omit<Article, 'isNew'>[] = [
   { 
     title: "The Design Process", 
     date: "Mar 4", 
@@ -71,3 +103,11 @@ export const articles: Article[] = [
   { title: "Design files end up in the trash", date: "Nov 24", slug: "design-files-trash", content: designFilesTrashContent },
   { title: "Thoughts on 2 consecutive 8.5 scores", date: "Nov 18", slug: "ai-and-feedback", content: aiAndFeedbackContent },
 ];
+
+// Sort articles by date (newest first) and add 'isNew' to the latest article
+export const articles: Article[] = rawArticles
+  .sort((a, b) => parseDate(b.date) - parseDate(a.date))
+  .map((article, index) => ({
+    ...article,
+    isNew: index === 0
+  }));

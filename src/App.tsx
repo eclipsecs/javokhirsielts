@@ -160,8 +160,13 @@ export default function App() {
                           onClick={() => navigate(article.slug)}
                           className="w-full flex items-baseline justify-between py-3 border-b border-transparent hover:border-[#f0f0f0] dark:hover:border-[#333] transition-all text-left cursor-pointer"
                         >
-                          <span className="text-[#1a1a1a] dark:text-[#f5f5f5] group-hover:text-[#000] dark:group-hover:text-[#fff] transition-colors">
+                          <span className="text-[#1a1a1a] dark:text-[#f5f5f5] group-hover:text-[#000] dark:group-hover:text-[#fff] transition-colors flex items-center gap-2">
                             {article.title}
+                            {article.isNew && (
+                              <span className="text-xs bg-[#1a1a1a] dark:bg-[#f5f5f5] text-[#f5f5f5] dark:text-[#1a1a1a] px-1.5 py-0.5 rounded font-medium">
+                                new
+                              </span>
+                            )}
                           </span>
                           <span className="text-sm text-[#999] dark:text-[#666] font-mono tabular-nums ml-4 shrink-0">
                             {article.date}
