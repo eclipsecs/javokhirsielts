@@ -7,3 +7,4 @@ and learn to write your thoughts using precise language. This approach can be ac
 
 ![Sentence Mining](/src/content/images/sentence-mining.png)
 
+> this is a single line quote
