@@ -10,7 +10,7 @@ import toolsNotSkillsContent from './posts/tools-not-skills.md?raw';
 import theFidelityTrapContent from './posts/the-fidelity-trap.md?raw';
 import contextAsTheMoatContent from './posts/context-as-the-moat.md?raw';
 import osakaRetreatContent from './posts/osaka-retreat.md?raw';
-import improvingChurnContent from './posts/improving-churn.md?raw';
+import improvingVocabularyContent from './posts/improving-vocabulary.md?raw';
 import theExodusCurveContent from './posts/the-exodus-curve.md?raw';
 import annualReview2024Content from './posts/annual-review-2024.md?raw';
 import continuumOfDesignContent from './posts/continuum-of-design.md?raw';
@@ -87,7 +87,7 @@ const rawArticles: Omit<Article, 'isNew'>[] = [
   { title: "The Fidelity Trap", date: "Jul 3", slug: "the-fidelity-trap", content: theFidelityTrapContent },
   { title: "Context as the Moat", date: "Jun 15", slug: "context-as-the-moat", content: contextAsTheMoatContent },
   { title: "Osaka Team Retreat Recap", date: "Apr 26", slug: "osaka-retreat", content: osakaRetreatContent },
-  { title: "Notes on Improving Churn", date: "Mar 12", slug: "improving-churn", content: improvingChurnContent },
+  { title: "Notes on improving vocabulary", date: "Mar 12", slug: "improving-vocabulary", content: improvingVocabularyContent },
   { title: "The Exodus Curve", date: "Feb 8", slug: "the-exodus-curve", content: theExodusCurveContent },
   { title: "Annual Review 2024", date: "Jan 4", slug: "annual-review-2024", content: annualReview2024Content },
   { title: "The Continuum of Design", date: "Dec 26", slug: "continuum-of-design", content: continuumOfDesignContent },

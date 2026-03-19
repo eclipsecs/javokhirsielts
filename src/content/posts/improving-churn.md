@@ -1,3 +1,0 @@
-# Notes on Improving Churn
-
-Write your content here...
