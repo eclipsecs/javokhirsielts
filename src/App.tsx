@@ -15,6 +15,7 @@ import { annotate } from 'rough-notation';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { articles, Article } from './content/articles';
+import sentenceMiningImage from './content/images/sentence-mining.png';
 
 export default function App() {
   const [currentSlug, setCurrentSlug] = useState<string | null>(null);
@@ -200,16 +201,30 @@ export default function App() {
                   <time className="text-sm text-[#999] dark:text-[#666] font-mono">{currentArticle?.date}</time>
                 </header>
 
-                {currentArticle?.image && (
-                  <img 
-                    src={currentArticle.image} 
-                    alt={currentArticle.title} 
-                    className="mb-8 border border-[#ccc] dark:border-[#555]"
-                  />
-                )}
-
                 <div className="markdown-content">
-                  <ReactMarkdown remarkPlugins={[remarkGfm]} allowElement={(element) => element.tagName === 'img' || element.tagName === 'a' || true}>
+                  <ReactMarkdown 
+                    remarkPlugins={[remarkGfm]}
+                    components={{
+                      img: ({node, ...props}) => {
+                        const src = props.src || '';
+                        // Map of known images - support both paths
+                        const imageMap: Record<string, string> = {
+                          '/src/content/images/sentence-mining.png': sentenceMiningImage,
+                          'sentence-mining.png': sentenceMiningImage,
+                          '/images/sentence-mining.png': sentenceMiningImage
+                        };
+                        // Try to find matching image
+                        let imageSrc = src;
+                        for (const key of Object.keys(imageMap)) {
+                          if (src.includes(key.replace('/src/content/images/', '').replace('/images/', ''))) {
+                            imageSrc = imageMap[key];
+                            break;
+                          }
+                        }
+                        return <img {...props} src={imageSrc} style={{border: '1px solid #ccc', marginBottom: '1rem'}} />;
+                      }
+                    }}
+                  >
                     {currentArticle?.content || "Content coming soon..."}
                   </ReactMarkdown>
                 </div>
