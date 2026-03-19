@@ -186,7 +186,7 @@ and learn to write your thoughts using precise language. This approach can be ac
 
 ![Sentence Mining](/src/content/images/sentence-mining.png)
 
-`,t_=`# The Exodus Curve
+> this is a single line quote`,t_=`# The Exodus Curve
 
 Write your content here...
 `,e_=`# Annual Review 2024

@@ -52,5 +52,5 @@
 }
 
 .markdown-content blockquote {
-  @apply border-l-2 border-[#f0f0f0] dark:border-[#333] pl-6 italic text-[#666] dark:text-[#999] my-8;
+  @apply border-l-2 border-[#1a1a1a] dark:border-[#f5f5f5] pl-6 font-bold text-[#333] dark:text-[#ccc] my-8;
 }
