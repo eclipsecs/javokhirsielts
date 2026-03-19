@@ -7,4 +7,6 @@ and learn to write your thoughts using precise language. This approach can be ac
 
 ![Sentence Mining](/src/content/images/sentence-mining.png)
 
-> this is a single line quote
+**"Teenagers are being bombarded with highly targeted commercial content"** is what you wanted to say when you first thought of describing ads being harmful for children, particularly kids, very young kids
+
+> Awareness is your only trust of instinct
