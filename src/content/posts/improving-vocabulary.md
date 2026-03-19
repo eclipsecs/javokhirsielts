@@ -5,5 +5,3 @@ and learn to write your thoughts using precise language. This approach can be ac
 
 Learning through articles.
 
-<img src="/images/sentence mining.png" alt="Sentence Mining" style="border: 1px solid black;" />
-

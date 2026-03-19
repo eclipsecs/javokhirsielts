@@ -1,5 +1,6 @@
 // Import your markdown files as raw strings
 import designProcessContent from './posts/the-design-process.md?raw';
+import sentenceMiningImage from './images/sentence-mining.png?url';
 import wtfIsPrototypingContent from './posts/wtf-is-prototyping.md?raw';
 import notesOnDengXiaopingContent from './posts/notes-on-deng-xiaoping.md?raw';
 import annualReview2025Content from './posts/annual-review-2025.md?raw';
@@ -32,6 +33,7 @@ export interface Article {
   slug: string;
   content?: string;
   isNew?: boolean;
+  image?: string;
 }
 
 // Helper to parse date string to comparable value
@@ -87,7 +89,7 @@ const rawArticles: Omit<Article, 'isNew'>[] = [
   { title: "The Fidelity Trap", date: "Jul 3", slug: "the-fidelity-trap", content: theFidelityTrapContent },
   { title: "Context as the Moat", date: "Jun 15", slug: "context-as-the-moat", content: contextAsTheMoatContent },
   { title: "Osaka Team Retreat Recap", date: "Apr 26", slug: "osaka-retreat", content: osakaRetreatContent },
-  { title: "Notes on improving vocabulary", date: "Mar 12", slug: "improving-vocabulary", content: improvingVocabularyContent },
+  { title: "Notes on improving vocabulary", date: "Mar 12", slug: "improving-vocabulary", content: improvingVocabularyContent, image: sentenceMiningImage },
   { title: "The Exodus Curve", date: "Feb 8", slug: "the-exodus-curve", content: theExodusCurveContent },
   { title: "Annual Review 2024", date: "Jan 4", slug: "annual-review-2024", content: annualReview2024Content },
   { title: "The Continuum of Design", date: "Dec 26", slug: "continuum-of-design", content: continuumOfDesignContent },

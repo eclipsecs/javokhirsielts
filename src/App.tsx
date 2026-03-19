@@ -200,8 +200,16 @@ export default function App() {
                   <time className="text-sm text-[#999] dark:text-[#666] font-mono">{currentArticle?.date}</time>
                 </header>
 
+                {currentArticle?.image && (
+                  <img 
+                    src={currentArticle.image} 
+                    alt={currentArticle.title} 
+                    className="mb-8 border border-[#ccc] dark:border-[#555]"
+                  />
+                )}
+
                 <div className="markdown-content">
-                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} allowElement={(element) => element.tagName === 'img' || element.tagName === 'a' || true}>
                     {currentArticle?.content || "Content coming soon..."}
                   </ReactMarkdown>
                 </div>
