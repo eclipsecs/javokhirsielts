@@ -4,9 +4,10 @@ Collecting phrases and expressions, or, in other words "Sentence Mining" is when
 and learn to write your thoughts using precise language. This approach can be accomplished using different ways, first by reading articles.
 
 **Learning through articles.**
-
 ![Sentence Mining](/src/content/images/sentence-mining.png)
 
+By looking at this image taken from New Scientist, you can acquire advanced vocabulary and natural phrasing within real-world contexts, which is kinda superior to just rote memorization or dry wordlists.
 
-
-> Awareness is your only trust of instinct
+![Sentence Mining](/src/content/images/correct-one.png)
+Compared with
+![Sentence Mining](/src/content/images/wrong-one.png)
