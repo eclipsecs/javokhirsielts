@@ -179,9 +179,9 @@ export default function App() {
                           <span className="text-[#1a1a1a] dark:text-[#f5f5f5] group-hover:text-[#000] dark:group-hover:text-[#fff] transition-colors flex items-center gap-2">
                             {article.title}
                             {article.isNew && (
-                              <span className="relative inline-block text-xs font-medium text-[#1e3a5f] dark:text-[#5d8ac9]">
-                                new
-                                <span className="absolute left-0 -bottom-0.5 w-full h-0.5 bg-[#1e3a5f] dark:bg-[#5d8ac9] transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                              <span className="relative inline-block text-xs font-bold text-[#1e3a5f] dark:text-[#5d8ac9] ml-1">
+                                <span className="relative z-10">new</span>
+                                <span className="absolute left-0 top-0 w-full h-full bg-amber-200/60 dark:bg-amber-300/40 -rotate-1 -z-0" style={{clipPath: 'polygon(0 40%, 100% 60%, 100% 100%, 0 100%)'}} />
                               </span>
                             )}
                           </span>
