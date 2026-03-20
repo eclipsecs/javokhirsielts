@@ -115,7 +115,7 @@ const rawArticles: Omit<Article, 'isNew'>[] = [
     content: howToWriteAnEssayContent
   },
   { 
-    title: "Testing the extremes", 
+    title: "My current IELTS score", 
     date: "Nov 10", 
     slug: "human-confrontation",
     content: humanConfrontationContent
@@ -206,7 +206,7 @@ const rawArticles: Omit<Article, 'isNew'>[] = [
     content: uzbekCultureContent
   },
   { 
-    title: "WTF is IELTS", 
+    title: "wtf is IELTS", 
     date: "Jan 15", 
     slug: "wtf-is-ielts",
     content: wtfIsIeltsContent
