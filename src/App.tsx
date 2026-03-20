@@ -179,8 +179,9 @@ export default function App() {
                           <span className="text-[#1a1a1a] dark:text-[#f5f5f5] group-hover:text-[#000] dark:group-hover:text-[#fff] transition-colors flex items-center gap-2">
                             {article.title}
                             {article.isNew && (
-                              <span className="text-xs bg-[#1a1a1a] dark:bg-[#f5f5f5] text-[#f5f5f5] dark:text-[#1a1a1a] px-1.5 py-0.5 rounded font-medium">
+                              <span className="relative inline-block text-xs font-medium text-[#1e3a5f] dark:text-[#5d8ac9]">
                                 new
+                                <span className="absolute left-0 -bottom-0.5 w-full h-0.5 bg-[#1e3a5f] dark:bg-[#5d8ac9] transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
                               </span>
                             )}
                           </span>
