@@ -63,20 +63,33 @@ export default function App() {
 
   const currentArticle = articles.find(a => a.slug === currentSlug);
   const cambridgeRef = useRef<HTMLAnchorElement>(null);
+  const cambridgeAnnotationRef = useRef<any>(null);
 
   useEffect(() => {
     if (cambridgeRef.current) {
       const annotation = annotate(cambridgeRef.current, {
         type: 'underline',
-        color: '#93c5fd',
+        color: '#1e3a5f',
         strokeWidth: 2,
         padding: 0.1,
         multiline: true,
         animationDuration: 800
       });
-      annotation.show();
+      cambridgeAnnotationRef.current = annotation;
     }
   }, []);
+
+  const handleCambridgeMouseEnter = () => {
+    if (cambridgeAnnotationRef.current) {
+      cambridgeAnnotationRef.current.show();
+    }
+  };
+
+  const handleCambridgeMouseLeave = () => {
+    if (cambridgeAnnotationRef.current) {
+      cambridgeAnnotationRef.current.hide();
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#fcfcfc] dark:bg-[#1a1a1a] text-[#1a1a1a] dark:text-[#f5f5f5] selection:bg-[#f2f2f2] dark:selection:bg-[#333] selection:text-[#000] dark:selection:text-[#fff]">
@@ -103,15 +116,17 @@ export default function App() {
                     {darkMode ? <Sun className="w-5 h-5 text-[#f5f5f5]" /> : <Moon className="w-5 h-5 text-[#1a1a1a]" />}
                   </button>
                 </div>
-                <h1 className="text-xl font-medium mb-4">Umerov Javokhir (Mitro)</h1>
+                <h1 className="text-xl font-medium mb-4">Umerov Javokhir (mitro)</h1>
                 <p className="text-[#666] dark:text-[#999] leading-relaxed mb-6">
-                  I’m Mitro, English teacher and founder of <span className="text-[#1e3a5f] dark:text-[#4a7bc7] font-semibold">@javokhirsielts</span>. Currently IELTS teacher  at{' '}
+                  Hi, i'm mitro, i teach and workout. Currently teaching at{' '}
                   <a 
                     ref={cambridgeRef}
                     href="https://cambridgeonline.uz/" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-[#1a1a1a] dark:text-[#f5f5f5] underline decoration-[#ccc] dark:decoration-[#555] hover:decoration-[#1a1a1a] dark:hover:decoration-[#fff] transition-colors underline-offset-4"
+                    className="text-[#1a1a1a] dark:text-[#f5f5f5] transition-colors cursor-pointer"
+                    onMouseEnter={handleCambridgeMouseEnter}
+                    onMouseLeave={handleCambridgeMouseLeave}
                   >
                     cambridgeonline.uz
                   </a>.
