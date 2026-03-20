@@ -13,7 +13,7 @@ import improvingVocabularyContent from './posts/improving-vocabulary.md?raw';
 import journalingDailyContent from './posts/journaling-daily.md?raw';
 import learningEnglishNeverstopsContent from './posts/learning-english-neverstops.md?raw';
 import learningFromInternetContent from './posts/learning-from-internet.md?raw';
-import mvpMindsetContent from './posts/mvp-mindset.md?raw';
+import foundingJavokhirsieltsContent from './posts/founding-javokhirsielts.md?raw';
 import professionAsTeacherContent from './posts/profession-as-teacher.md?raw';
 import religiousObligationsContent from './posts/religious-obligations.md?raw';
 import silenceDuringProgressContent from './posts/silence-during-progress.md?raw';
@@ -148,8 +148,8 @@ const rawArticles: Omit<Article, 'isNew'>[] = [
   { 
     title: "Retaining an MVP mindset", 
     date: "May 3", 
-    slug: "mvp-mindset",
-    content: mvpMindsetContent
+    slug: "founding-javokhirsielts",
+    content: foundingJavokhirsieltsContent
   },
   { 
     title: "Profession as an English teacher", 
