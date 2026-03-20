@@ -1,3 +1,3 @@
-# Notes on Deng Xiaoping
+# How to write an essay
 
 Write your content here...

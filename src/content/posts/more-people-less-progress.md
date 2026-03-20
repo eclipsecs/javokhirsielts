@@ -1,3 +1,0 @@
-# More People, Less Progress: The Startup Scaling Paradox
-
-Write your content here...

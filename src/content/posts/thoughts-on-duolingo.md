@@ -1,3 +1,3 @@
-# Place Your Bets
+# Thoughts on Duolingo
 
 Write your content here...

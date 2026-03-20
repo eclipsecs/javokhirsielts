@@ -1,3 +1,0 @@
-# The Gnarly Bits of Product Design
-
-Write your content here...

@@ -1,3 +1,0 @@
-# Folders are dead, long live folders
-
-Write your content here...

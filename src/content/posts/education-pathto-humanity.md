@@ -1,3 +1,3 @@
-# Intervention ≠ good
+# Education never ends
 
 Write your content here...

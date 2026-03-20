@@ -1,0 +1,3 @@
+# Attend courses VS Self-study
+
+Write your content here...

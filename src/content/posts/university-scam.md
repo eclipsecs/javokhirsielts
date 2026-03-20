@@ -1,0 +1,3 @@
+# The scam Universities inject in your brain
+
+Write your content here...

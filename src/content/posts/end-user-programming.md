@@ -1,3 +1,0 @@
-# End user programming – my experience building an iOS app
-
-Write your content here...

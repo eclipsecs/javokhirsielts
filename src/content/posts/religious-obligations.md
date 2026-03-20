@@ -1,3 +1,3 @@
-# The Continuum of Design
+# Religious obligations
 
 Write your content here...

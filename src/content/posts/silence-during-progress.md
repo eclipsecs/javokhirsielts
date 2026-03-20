@@ -1,0 +1,3 @@
+# Maintain silence during progress
+
+Write your content here...

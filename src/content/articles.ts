@@ -1,31 +1,30 @@
 // Import your markdown files as raw strings
-import designProcessContent from './posts/the-design-process.md?raw';
-import sentenceMiningImage from './images/sentence-mining.png?url';
-import wtfIsPrototypingContent from './posts/wtf-is-prototyping.md?raw';
-import notesOnDengXiaopingContent from './posts/notes-on-deng-xiaoping.md?raw';
-import annualReview2025Content from './posts/annual-review-2025.md?raw';
-import testingTheExtremesContent from './posts/testing-the-extremes.md?raw';
-import foldersAreDeadContent from './posts/folders-are-dead-long-live-folders.md?raw';
-import morePeopleLessProgressContent from './posts/more-people-less-progress.md?raw';
-import toolsNotSkillsContent from './posts/tools-not-skills.md?raw';
-import theFidelityTrapContent from './posts/the-fidelity-trap.md?raw';
-import contextAsTheMoatContent from './posts/context-as-the-moat.md?raw';
-import osakaRetreatContent from './posts/osaka-retreat.md?raw';
-import improvingVocabularyContent from './posts/improving-vocabulary.md?raw';
-import theExodusCurveContent from './posts/the-exodus-curve.md?raw';
-import annualReview2024Content from './posts/annual-review-2024.md?raw';
-import continuumOfDesignContent from './posts/continuum-of-design.md?raw';
-import placeYourBetsContent from './posts/place-your-bets.md?raw';
-import endUserProgrammingContent from './posts/end-user-programming.md?raw';
-import quickSummaryContent from './posts/quick-summary.md?raw';
-import miniProgramsVsNativeContent from './posts/mini-programs-vs-native.md?raw';
-import gnarlyBitsContent from './posts/gnarly-bits.md?raw';
-import mvpMindsetContent from './posts/mvp-mindset.md?raw';
-import interventionNotGoodContent from './posts/intervention-not-good.md?raw';
-import annualReview2023Content from './posts/annual-review-2023.md?raw';
-import absurdIn100YearsContent from './posts/absurd-in-100-years.md?raw';
-import designFilesTrashContent from './posts/design-files-trash.md?raw';
+import abidingByStereotypesContent from './posts/abiding-by-stereotypes.md?raw';
 import aiAndFeedbackContent from './posts/ai-and-feedback.md?raw';
+import annualReview2025Content from './posts/annual-review-2025.md?raw';
+import annualReview2026Content from './posts/annual-review-2026.md?raw';
+import beingPiousContent from './posts/being-pious.md?raw';
+import coursesVsSelfstudyContent from './posts/courses-vs-selfstudy.md?raw';
+import daysOfJapanContent from './posts/days-of-japan.md?raw';
+import educationPathToHumanityContent from './posts/education-pathto-humanity.md?raw';
+import howToWriteAnEssayContent from './posts/how-to-write-an-essay.md?raw';
+import humanConfrontationContent from './posts/human-confrontation.md?raw';
+import improvingVocabularyContent from './posts/improving-vocabulary.md?raw';
+import journalingDailyContent from './posts/journaling-daily.md?raw';
+import learningEnglishNeverstopsContent from './posts/learning-english-neverstops.md?raw';
+import learningFromInternetContent from './posts/learning-from-internet.md?raw';
+import mvpMindsetContent from './posts/mvp-mindset.md?raw';
+import professionAsTeacherContent from './posts/profession-as-teacher.md?raw';
+import religiousObligationsContent from './posts/religious-obligations.md?raw';
+import silenceDuringProgressContent from './posts/silence-during-progress.md?raw';
+import skillsNotDegreesContent from './posts/skills-not-degrees.md?raw';
+import theExodusOfNationContent from './posts/the-exodus-of-nation.md?raw';
+import theFidelityTrapContent from './posts/the-fidelity-trap.md?raw';
+import thoughtsOnDuolingoContent from './posts/thoughts-on-duolingo.md?raw';
+import universityScamContent from './posts/university-scam.md?raw';
+import uzbekCultureContent from './posts/uzbek-culture.md?raw';
+import wtfIsIeltsContent from './posts/wtf-is-ielts.md?raw';
+import sentenceMiningImage from './images/sentence-mining.png?url';
 
 export interface Article {
   title: string;
@@ -37,7 +36,7 @@ export interface Article {
 }
 
 // Helper to parse date string to comparable value
-// Current time: 2026-03-13
+// Current time: 2026-03-20
 const parseDate = (dateStr: string): number => {
   const now = new Date();
   const currentYear = now.getFullYear();
@@ -54,9 +53,8 @@ const parseDate = (dateStr: string): number => {
   
   // Determine year based on article context
   // Annual reviews are published in January of the following year
+  if (dateStr.includes('Annual Review 2026')) return new Date(2026, 0, 2).getTime();
   if (dateStr.includes('Annual Review 2025')) return new Date(2025, 0, 2).getTime();
-  if (dateStr.includes('Annual Review 2024')) return new Date(2024, 0, 4).getTime();
-  if (dateStr.includes('Annual Review 2023')) return new Date(2023, 0, 4).getTime();
   
   // For regular articles: if month > current month (March), it's last year
   // Otherwise it's this year
@@ -69,41 +67,156 @@ const parseDate = (dateStr: string): number => {
 // Raw articles data (unsorted)
 const rawArticles: Omit<Article, 'isNew'>[] = [
   { 
-    title: "The Design Process", 
-    date: "Mar 4", 
-    slug: "the-design-process",
-    content: designProcessContent 
+    title: "Abiding by stereotypes?", 
+    date: "Mar 15", 
+    slug: "abiding-by-stereotypes",
+    content: abidingByStereotypesContent 
   },
   { 
-    title: "WTF is Prototyping?", 
-    date: "Jan 24", 
-    slug: "wtf-is-prototyping",
-    content: wtfIsPrototypingContent
+    title: "Thoughts on 2 consecutive 8.5 scores", 
+    date: "Nov 18", 
+    slug: "ai-and-feedback",
+    content: aiAndFeedbackContent
   },
-  { title: "Notes on Deng Xiaoping", date: "Feb 22", slug: "notes-on-deng-xiaoping", content: notesOnDengXiaopingContent },
-  { title: "Annual Review 2025", date: "Jan 2", slug: "annual-review-2025", content: annualReview2025Content },
-  { title: "Testing the extremes", date: "Nov 10", slug: "testing-the-extremes", content: testingTheExtremesContent },
-  { title: "Folders are dead, long live folders", date: "Nov 3", slug: "folders-are-dead-long-live-folders", content: foldersAreDeadContent },
-  { title: "More People, Less Progress: The Startup Scaling Paradox", date: "Oct 19", slug: "more-people-less-progress", content: morePeopleLessProgressContent },
-  { title: "Tools ≠ skills", date: "Aug 4", slug: "tools-not-skills", content: toolsNotSkillsContent },
-  { title: "The Fidelity Trap", date: "Jul 3", slug: "the-fidelity-trap", content: theFidelityTrapContent },
-  { title: "Context as the Moat", date: "Jun 15", slug: "context-as-the-moat", content: contextAsTheMoatContent },
-  { title: "Osaka Team Retreat Recap", date: "Apr 26", slug: "osaka-retreat", content: osakaRetreatContent },
-  { title: "Notes on improving vocabulary", date: "Mar 12", slug: "improving-vocabulary", content: improvingVocabularyContent, image: sentenceMiningImage },
-  { title: "The Exodus Curve", date: "Feb 8", slug: "the-exodus-curve", content: theExodusCurveContent },
-  { title: "Annual Review 2024", date: "Jan 4", slug: "annual-review-2024", content: annualReview2024Content },
-  { title: "The Continuum of Design", date: "Dec 26", slug: "continuum-of-design", content: continuumOfDesignContent },
-  { title: "Place Your Bets", date: "Dec 18", slug: "place-your-bets", content: placeYourBetsContent },
-  { title: "End user programming – my experience building an iOS app", date: "Nov 22", slug: "end-user-programming", content: endUserProgrammingContent },
-  { title: "A quick summary", date: "Oct 11", slug: "quick-summary", content: quickSummaryContent },
-  { title: "Mini Programs v.s. Native Apps", date: "Jul 30", slug: "mini-programs-vs-native", content: miniProgramsVsNativeContent },
-  { title: "The Gnarly Bits of Product Design", date: "May 24", slug: "gnarly-bits", content: gnarlyBitsContent },
-  { title: "Retaining an MVP mindset", date: "May 3", slug: "mvp-mindset", content: mvpMindsetContent },
-  { title: "Intervention ≠ good", date: "Feb 3", slug: "intervention-not-good", content: interventionNotGoodContent },
-  { title: "Annual Review 2023", date: "Jan 4", slug: "annual-review-2023", content: annualReview2023Content },
-  { title: "What will be absurd in 100 years?", date: "Dec 8", slug: "absurd-in-100-years", content: absurdIn100YearsContent },
-  { title: "Design files end up in the trash", date: "Nov 24", slug: "design-files-trash", content: designFilesTrashContent },
-  { title: "Thoughts on 2 consecutive 8.5 scores", date: "Nov 18", slug: "ai-and-feedback", content: aiAndFeedbackContent },
+  { 
+    title: "Annual Review 2026", 
+    date: "Jan 2", 
+    slug: "annual-review-2026",
+    content: annualReview2026Content
+  },
+  { 
+    title: "Being pious", 
+    date: "Mar 10", 
+    slug: "being-pious",
+    content: beingPiousContent
+  },
+  { 
+    title: "Attend courses VS Self-study", 
+    date: "Feb 28", 
+    slug: "courses-vs-selfstudy",
+    content: coursesVsSelfstudyContent
+  },
+  { 
+    title: "4 years of Japan", 
+    date: "Mar 1", 
+    slug: "days-of-japan",
+    content: daysOfJapanContent
+  },
+  { 
+    title: "Education never ends", 
+    date: "Jan 20", 
+    slug: "education-pathto-humanity",
+    content: educationPathToHumanityContent
+  },
+  { 
+    title: "How to write an essay", 
+    date: "Feb 15", 
+    slug: "how-to-write-an-essay",
+    content: howToWriteAnEssayContent
+  },
+  { 
+    title: "Testing the extremes", 
+    date: "Nov 10", 
+    slug: "human-confrontation",
+    content: humanConfrontationContent
+  },
+  { 
+    title: "Sentence mining", 
+    date: "Mar 12", 
+    slug: "improving-vocabulary",
+    content: improvingVocabularyContent,
+    image: sentenceMiningImage
+  },
+  { 
+    title: "Daily journaling for self-reflection", 
+    date: "Jan 25", 
+    slug: "journaling-daily",
+    content: journalingDailyContent
+  },
+  { 
+    title: "Learning a language never stops", 
+    date: "Feb 5", 
+    slug: "learning-english-neverstops",
+    content: learningEnglishNeverstopsContent
+  },
+  { 
+    title: "Learning from Internet in the age of Internet", 
+    date: "Dec 20", 
+    slug: "learning-from-internet",
+    content: learningFromInternetContent
+  },
+  { 
+    title: "Retaining an MVP mindset", 
+    date: "May 3", 
+    slug: "mvp-mindset",
+    content: mvpMindsetContent
+  },
+  { 
+    title: "Profession as an English teacher", 
+    date: "Mar 8", 
+    slug: "profession-as-teacher",
+    content: professionAsTeacherContent
+  },
+  { 
+    title: "Religious obligations", 
+    date: "Mar 5", 
+    slug: "religious-obligations",
+    content: religiousObligationsContent
+  },
+  { 
+    title: "Maintain silence during progress", 
+    date: "Apr 12", 
+    slug: "silence-during-progress",
+    content: silenceDuringProgressContent
+  },
+  { 
+    title: "Skills over degrees", 
+    date: "Aug 20", 
+    slug: "skills-not-degrees",
+    content: skillsNotDegreesContent
+  },
+  { 
+    title: "The Exodus of people", 
+    date: "Feb 8", 
+    slug: "the-exodus-of-nation",
+    content: theExodusOfNationContent
+  },
+  { 
+    title: "The Fidelity Trap", 
+    date: "Jul 3", 
+    slug: "the-fidelity-trap",
+    content: theFidelityTrapContent
+  },
+  { 
+    title: "Thoughts on Duolingo", 
+    date: "Nov 5", 
+    slug: "thoughts-on-duolingo",
+    content: thoughtsOnDuolingoContent
+  },
+  { 
+    title: "The scam Universities inject in your brain", 
+    date: "Oct 15", 
+    slug: "university-scam",
+    content: universityScamContent
+  },
+  { 
+    title: "Uzbek Culture and Betrayal of each other", 
+    date: "Sep 28", 
+    slug: "uzbek-culture",
+    content: uzbekCultureContent
+  },
+  { 
+    title: "WTF is IELTS", 
+    date: "Jan 15", 
+    slug: "wtf-is-ielts",
+    content: wtfIsIeltsContent
+  },
+  { 
+    title: "Annual Review 2025", 
+    date: "Jan 2", 
+    slug: "annual-review-2025",
+    content: annualReview2025Content
+  },
 ];
 
 // Sort articles by date (newest first) and add 'isNew' to the latest article

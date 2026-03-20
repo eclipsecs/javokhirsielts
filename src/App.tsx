@@ -105,7 +105,7 @@ export default function App() {
                 </div>
                 <h1 className="text-xl font-medium mb-4">Umerov Javokhir (Mitro)</h1>
                 <p className="text-[#666] dark:text-[#999] leading-relaxed mb-6">
-                  I’m Mitro, English teacher and founder of @javokhirsielts. Currently IELTS teacher  at{' '}
+                  I’m Mitro, English teacher and founder of <span className="text-[#1e3a5f] dark:text-[#4a7bc7] font-semibold">@javokhirsielts</span>. Currently IELTS teacher  at{' '}
                   <a 
                     ref={cambridgeRef}
                     href="https://cambridgeonline.uz/" 
