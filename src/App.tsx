@@ -237,7 +237,7 @@ export default function App() {
                             break;
                           }
                         }
-                        return <img {...props} src={imageSrc} style={{border: '1px solid #ccc'}} />;
+                        return <img {...props} src={imageSrc} />;
                       }
                     }}
                   >

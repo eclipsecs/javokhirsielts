@@ -3,11 +3,22 @@
 Collecting phrases and expressions, or, in other words "Sentence Mining" is when you immerse yourself into the context
 and learn to write your thoughts using precise language. This approach can be accomplished using different ways, first by reading articles.
 
-**Learning through articles.**
+**1. Learning through articles.**
+
+As the name suggests, articles - a compilation of words and ideas written by someone. The only and the most successful way, in my opinion, to get chunks of vocabulary to sound precise and coherent, both verbally and written.
+
 ![Sentence Mining](/src/content/images/sentence-mining.png)
 
-By looking at this image taken from New Scientist, you can acquire advanced vocabulary and natural phrasing within real-world contexts, which is kinda superior to just rote memorization or dry wordlists.
+By looking at this image taken from **New Scientist**, you can acquire advanced vocabulary and natural phrasing within real-world contexts, which is kinda superior to just rote memorization or dry wordlists.
 
 ![Sentence Mining](/src/content/images/correct-one.png)
 Compare the top with the one below. You can notice a major difference in usage of vocabulary. What stands out the most is not only the chunks used, but also the smooth flow of the sentence—crucial for the reader
 ![Sentence Mining](/src/content/images/wrong-one.png)
+
+**2. Immersion**
+![Sentence Mining](/src/content/images/economist-example.png)
+
+This approach is quite cumbersome, mainly because it is for language enthusiasts where they constantly revolve around learning language by immersing themselves into various contents, such as:
+1. - **Native books** - literally any book. I'd go for something educational instead of some BS self-help ones.
+2. - **Podcasts** - again, any podcast, unless it's not central to one topic. Lex fridman is my go-to
+3. - Movies

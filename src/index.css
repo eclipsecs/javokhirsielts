@@ -44,7 +44,7 @@
 }
 
 .markdown-content img {
-  @apply rounded-lg my-4 w-full h-auto object-cover border border-[#f0f0f0] dark:border-[#333];
+  @apply rounded-lg my-4 w-full h-auto object-cover border-none outline-none;
 }
 
 .markdown-content a {
