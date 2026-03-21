@@ -29,3 +29,7 @@ As for me, I tend to grab natural chunks through watching short videos, ranging 
 ![Sentence Mining](/src/content/images/economist-example-one.png)
 For your context <span style="color: #c44569; font-style: italic;">**"Starkest way"**</span> means the most clear, obvious, or harsh manner possible. And this sentence expression stands from its starkest construction of sentence compared with the one below.
 ![Sentence Mining](/src/content/images/economist-example-two.png)
+
+## <span style="color: #e21750; font-weight: bold;">My final take away.</span>
+In a nutshell, I believe that you should not stick to mere reference books (student books) made by various educational publisher but go deeply into learning from various contexts. By the way, speaking of improving <span style="color: #c44569; font-style: italic;">**"Speaking"**</span>, I couldn't find anything better than chatgpt. Use it to aid you with following sections.
+![Sentence Mining](/src/content/images/gpt-01.png.png)
