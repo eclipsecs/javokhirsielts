@@ -1,4 +1,4 @@
-# Sentence mining
+# Improving the vocabulary
 
 Collecting phrases and expressions, or, in other words "Sentence Mining" is when you immerse yourself into the context
 and learn to write your thoughts using precise language. This approach can be accomplished using different ways, first by reading articles.
@@ -23,9 +23,9 @@ This approach is quite cumbersome, mainly because it is for language enthusiasts
 2. - **Podcasts** - again, any podcast, unless it's not central to one topic. Lex fridman is my go-to
 3. - **Movies** - movies vary by genres for you verification. Any movies is fine if you are not into action stuff. Some people would rather watch thrillers, and sci-fi movies like Iron Man, Spidier Man and so on, and thereby complain that immersion is of no use. To avoid this from happening, focus on watching detectives movies like Sherlock holmes, and comedy movies where speech is superior to made-up actions.
 
-As for me, I tend to grab natural chunks through watching short videos, ranging from random news, to scientific ones. And, for me, [Last Week tonight by John Oliver](https://www.youtube.com/@LastWeekTonight) is by far the best choice.
+As for me, I tend to grab natural chunks through watching short videos, ranging from random news, to scientific ones. And, for me, [<span style="color: #c44569;">Last Week tonight by John Oliver</span>](https://www.youtube.com/@LastWeekTonight) is by far the best choice.
 
 **Take a look at this example below ⬇ taken from news attached above.**
 ![Sentence Mining](/src/content/images/economist-example-one.png)
-For your context <span style="color: #ff69b4;">**"Starkest way"**</span> means the most clear, obvious, or harsh manner possible. And this sentence expression stands from its starkest construction of sentence compared with the one below.
+For your context <span style="color: #c44569; font-style: italic;">**"Starkest way"**</span> means the most clear, obvious, or harsh manner possible. And this sentence expression stands from its starkest construction of sentence compared with the one below.
 ![Sentence Mining](/src/content/images/economist-example-two.png)
