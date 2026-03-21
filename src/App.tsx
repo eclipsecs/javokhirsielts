@@ -63,6 +63,8 @@ export default function App() {
   };
 
   const currentArticle = articles.find(a => a.slug === currentSlug);
+  const currentIndex = articles.findIndex(a => a.slug === currentSlug);
+  const nextArticle = currentIndex < articles.length - 1 ? articles[currentIndex + 1] : null;
   const cambridgeRef = useRef<HTMLAnchorElement>(null);
   const cambridgeAnnotationRef = useRef<any>(null);
 
@@ -250,6 +252,16 @@ export default function App() {
                   </ReactMarkdown>
                 </div>
               </article>
+
+              {nextArticle && (
+                <button 
+                  onClick={() => navigate(nextArticle.slug)}
+                  className="flex items-center gap-2 text-sm text-[#999] dark:text-[#666] hover:text-[#1a1a1a] dark:hover:text-[#fff] transition-colors mt-12 group cursor-pointer"
+                >
+                  Next: {nextArticle.title}
+                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                </button>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
