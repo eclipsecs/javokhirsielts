@@ -25,7 +25,7 @@ This approach is quite cumbersome, mainly because it is for language enthusiasts
 
 As for me, I tend to grab natural chunks through watching short videos, ranging from random news, to scientific ones. And, for me, [<span style="color: #c44569;">Last Week tonight by John Oliver</span>](https://www.youtube.com/@LastWeekTonight) is by far the best choice.
 
-**Take a look at this example below ⬇ taken from news attached above.**
+**Take a look at this example below taken from news attached above.**
 ![Sentence Mining](/src/content/images/economist-example-one.png)
 For your context <span style="color: #c44569; font-style: italic;">**"Starkest way"**</span> means the most clear, obvious, or harsh manner possible. And this sentence expression stands from its starkest construction of sentence compared with the one below.
 ![Sentence Mining](/src/content/images/economist-example-two.png)
