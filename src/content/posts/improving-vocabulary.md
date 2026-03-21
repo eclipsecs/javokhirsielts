@@ -32,4 +32,4 @@ For your context <span style="color: #c44569; font-style: italic;">**"Starkest w
 
 ## <span style="color: #e21750; font-weight: bold;">My final take away.</span>
 In a nutshell, I believe that you should not stick to mere reference books (student books) made by various educational publisher but go deeply into learning from various contexts. By the way, speaking of improving <span style="color: #c44569; font-style: italic;">**"Speaking"**</span>, I couldn't find anything better than chatgpt. Use it to aid you with following sections.
-![Sentence Mining](/src/content/images/gpt-incontext.png.png)
+![Sentence Mining](/src/content/images/gpt-incontext.png)
