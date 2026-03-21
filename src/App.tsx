@@ -14,6 +14,7 @@ import { ArrowUpRight, ArrowLeft, Moon, Sun } from 'lucide-react';
 import { annotate } from 'rough-notation';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import { articles, Article } from './content/articles';
 import sentenceMiningImage from './content/images/sentence-mining.png';
 
@@ -220,7 +221,11 @@ export default function App() {
                 <div className="markdown-content">
                   <ReactMarkdown 
                     remarkPlugins={[remarkGfm]}
+                    rehypePlugins={[rehypeRaw]}
                     components={{
+                      span: ({node, style, ...props}) => {
+                        return <span style={style} {...props} />;
+                      },
                       img: ({node, ...props}) => {
                         const src = props.src || '';
                         // Map of known images - support both paths
