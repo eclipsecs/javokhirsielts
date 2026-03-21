@@ -21,7 +21,7 @@ Compare the top with the one below. You can notice a major difference in usage o
 This approach is quite cumbersome, mainly because it is for language enthusiasts where they constantly revolve around learning a certain language by immersing themselves into various contents, such as:
 1. - **Native books** - literally any book. I'd go for something educational instead of some BS self-help ones.
 2. - **Podcasts** - again, any podcast, unless it's not central to one topic. Lex fridman is my go-to
-3. - **Movies** - movies vary by genres for you verification. Any movies is fine if you are not into action stuff. Some people would rather watch thrillers, and sci-fi movies like Iron Man, Spidier Man and so on, and thereby complain that immersion is of no use. To avoid this from happening, focus on watching detectives movies like Sherlock holmes, and comedy movies where speech is superior to made-up actions.
+3. - **Movies** - movies vary by genres for you verification. Any movies is fine if you are not into action stuff. Some people would rather watch thrillers, and sci-fi movies like Iron Man, or Spider Man, and thereby complain that immersion is of no use. To avoid this from happening, focus on watching detective movies like Sherlock holmes, and comedy movies where speech is superior to made-up actions.
 
 As for me, I tend to grab natural chunks through watching short videos, ranging from random news, to scientific ones. And, for me, [<span style="color: #c44569;">Last Week tonight by John Oliver</span>](https://www.youtube.com/@LastWeekTonight) is by far the best choice.
 
@@ -31,5 +31,5 @@ For your context <span style="color: #c44569; font-style: italic;">**"Starkest w
 ![Sentence Mining](/src/content/images/economist-example-two.png)
 
 ## <span style="color: #e21750; font-weight: bold;">My final take away.</span>
-In a nutshell, I believe that you should not stick to mere reference books (student books) made by various educational publisher but go deeply into learning from various contexts. By the way, speaking of improving <span style="color: #c44569; font-style: italic;">**"Speaking"**</span>, I couldn't find anything better than chatgpt. Use it to aid you with following sections.
+In a nutshell, I believe that you should not stick to mere reference books (student books) made by various educational publisher but go deeply into learning from various contexts. By the way, speaking of improving <span style="color: #c44569; font-style: italic;">**"Speaking"**</span>, I couldn't find anything better than chatgpt. Use it to aid you with the following sections.
 ![Sentence Mining](/src/content/images/gpt-incontext.png)
