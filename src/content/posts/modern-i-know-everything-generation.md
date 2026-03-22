@@ -1,0 +1,23 @@
+# Modern I Know Everything Generation
+
+Let me start-off by saying <span style="color: #c44569; font-style: italic;">**"Congratulations"**</span> on your milestone for reaching this article, because I reckon you are stuck in a rut, thereby constantly scrolling through social media to escape the reality for a while or maybe permanently. This ignorance slowly turns into a habit which quitely takes control over your life, where you stop shouldering responsibility, and become a <span style="color: #c44569; font-style: italic">**grumbler**</span>. In other words, you distract yourself from stress, emotional exhaustion, or personal struggle or thoughts caused by various events such as, financial worries, or conflict at home, you name it.
+
+![modern I know everything generation](/src/content/images/young-and-dumb.png)
+
+Over time, this dependence starts to erode their potential. They lose track of time, struggle to stay organized, and fail to prioritize what truly matters. Family connections, for instance, begin to weaken. Simple yet meaningful moments—like sitting together for meals, going out for fresh air, or having genuine conversations—are replaced by silent scrolling. People stop engaging with one another. They no longer laugh together, share memories, or talk about their dreams. Instead, distance grows, misunderstandings increase, and relationships become strained, leaving everyone emotionally drained.
+
+This issue becomes even more concerning when it comes to younger generations. Children and teenagers who become absorbed in screens often lose focus on their education. They skip classes, ignore assignments, and lose motivation to participate in school activities. Gradually, their academic performance declines. They struggle to understand complex ideas, fall behind their peers, and lose confidence in their abilities. What’s worse, they may not even realize how much they are sacrificing until it’s too late.
+
+At the same time, this lifestyle takes a serious toll on physical health. Spending long hours sitting indoors leads to a lack of movement. People no longer engage in physical activities that keep the body active and strong. As a result, their energy levels drop, their immune systems weaken, and their overall well-being deteriorates. A lifestyle built around screens slowly replaces one that once included outdoor play, exercise, and real-world interaction.
+
+Alongside these habits, another dangerous pattern emerges—irresponsible spending. Many individuals feel pressured to maintain a certain image. They buy expensive items, not out of necessity, but to impress others or feel a sense of belonging. Social media often fuels this desire, creating unrealistic standards and constant comparison. People start chasing appearances rather than stability.
+
+Instead of planning for the future, they spend impulsively. They neglect saving or investing, choosing short-term satisfaction over long-term security. Eventually, this leads to financial stress. Living paycheck to paycheck becomes the norm. Debts pile up, bills become overwhelming, and anxiety takes over. The weight of financial instability doesn’t just affect their wallets—it deeply impacts their mental health.
+
+Many begin to feel trapped. They experience guilt for their choices, stress over their situation, and frustration at their inability to change. It becomes a cycle that is hard to break. The more they escape into distractions, the more their real-life problems grow. And the more those problems grow, the more they seek escape.
+
+What makes this situation truly heartbreaking is that people are slowly drifting away from what genuinely brings happiness—real connections, personal growth, and inner peace. They are trading meaningful experiences for temporary comfort. They are losing valuable time that could have been spent building memories, improving themselves, or strengthening relationships.
+
+However, awareness is the first step toward change. Once people recognize these patterns, they can begin to take control. Setting boundaries with technology, prioritizing real-life interactions, managing finances wisely, and focusing on personal well-being can gradually restore balance. It’s not about completely rejecting modern life, but about using it consciously.
+
+At the end of the day, life is not meant to be lived through a screen. It is meant to be felt, experienced, and shared. And the sooner people realize this, the sooner they can reclaim the time, energy, and potential they have been unknowingly losing.

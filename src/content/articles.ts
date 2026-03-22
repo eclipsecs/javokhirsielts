@@ -25,6 +25,7 @@ import universityScamContent from './posts/university-scam.md?raw';
 import uzbekCultureContent from './posts/uzbek-culture.md?raw';
 import wtfIsIeltsContent from './posts/wtf-is-ielts.md?raw';
 import sentenceMiningImage from './images/sentence-mining.png?url';
+import modernIKnowEverythingGenerationContent from './posts/modern-i-know-everything-generation.md?raw';
 
 export interface Article {
   title: string;
@@ -75,6 +76,12 @@ const parseDate = (dateStr: string): number => {
 
 // Raw articles data (unsorted)
 const rawArticles: Omit<Article, 'isNew'>[] = [
+  { 
+    title: "Modern I know everything generation", 
+    date: "Mar 22, 2026", 
+    slug: "modern-i-know-everything-generation",
+    content: modernIKnowEverythingGenerationContent 
+  },
   { 
     title: "Abiding by stereotypes?", 
     date: "Mar 12, 2026", 
@@ -130,7 +137,7 @@ const rawArticles: Omit<Article, 'isNew'>[] = [
     content: humanConfrontationContent
   },
   { 
-    title: "Sentence mining", 
+    title: "How to mine sentences for articulation?", 
     date: "Mar 19, 2026", 
     slug: "improving-vocabulary",
     content: improvingVocabularyContent,
