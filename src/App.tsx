@@ -16,10 +16,88 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { articles, Article } from './content/articles';
+import { FileText, Download } from 'lucide-react';
 import sentenceMiningImage from './content/images/sentence-mining.png';
+
+export interface Resource {
+  id: string;
+  title: string;
+  description: string;
+  category: 'speaking' | 'essays' | 'writing';
+  filePath: string;
+  fileType: 'pdf' | 'docx';
+  fileSize: string;
+}
+
+export const resources: Resource[] = [
+  {
+    id: '1',
+    title: 'IELTS Writing Task 1 Templates',
+    description: 'Essential templates for Task 1 (graphs, charts, diagrams). Learn the structure that gets band 7+.',
+    category: 'pdf-guides',
+    filePath: '/resources/pdf-guides/writing-task1-templates.pdf',
+    fileType: 'pdf',
+    fileSize: '2.4 MB'
+  },
+  {
+    id: '2',
+    title: 'IELTS Writing Task 2 Essay Structure',
+    description: 'Complete guide to the 4-paragraph essay structure with example introductions and conclusions.',
+    category: 'pdf-guides',
+    filePath: '/resources/pdf-guides/writing-task2-structure.pdf',
+    fileType: 'pdf',
+    fileSize: '1.8 MB'
+  },
+  {
+    id: '3',
+    title: 'Speaking Band Descriptors Guide',
+    description: 'Understand what examiners look for in each band score. Includes examples for Speaking Parts 1-3.',
+    category: 'pdf-guides',
+    filePath: '/resources/pdf-guides/speaking-band-descriptors.pdf',
+    fileType: 'pdf',
+    fileSize: '3.1 MB'
+  },
+  {
+    id: '4',
+    title: 'Essay Planning Template',
+    description: 'Use this to plan your Task 2 essays. Includes sections for thesis, arguments, and examples.',
+    category: 'templates',
+    filePath: '/resources/templates/essay-planning-template.docx',
+    fileType: 'docx',
+    fileSize: '156 KB'
+  },
+  {
+    id: '5',
+    title: 'Speaking Part 2 Notes Template',
+    description: 'Cue card preparation template to help you structure your 2-minute talk.',
+    category: 'templates',
+    filePath: '/resources/templates/speaking-part2-notes.docx',
+    fileType: 'docx',
+    fileSize: '89 KB'
+  },
+  {
+    id: '6',
+    title: 'Sample Answers (Band 7-9)',
+    description: 'Real example answers with examiner comments. See exactly what makes a high-scoring answer.',
+    category: 'practice',
+    filePath: '/resources/practice/sample-answers.pdf',
+    fileType: 'pdf',
+    fileSize: '4.2 MB'
+  },
+  {
+    id: '7',
+    title: 'Vocabulary for Essays',
+    description: 'High-frequency academic vocabulary organized by topic. Essential for Writing and Speaking.',
+    category: 'practice',
+    filePath: '/resources/practice/vocabulary-for-essays.pdf',
+    fileType: 'pdf',
+    fileSize: '1.5 MB'
+  }
+];
 
 export default function App() {
   const [currentSlug, setCurrentSlug] = useState<string | null>(null);
+  const [showResources, setShowResources] = useState<boolean>(false);
   const [darkMode, setDarkMode] = useState<boolean>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('darkMode');
@@ -48,7 +126,9 @@ export default function App() {
     
     // Initial load
     const initialPath = window.location.pathname.replace('/', '');
-    if (initialPath && articles.find(a => a.slug === initialPath)) {
+    if (initialPath === 'resources') {
+      setShowResources(true);
+    } else if (initialPath && articles.find(a => a.slug === initialPath)) {
       setCurrentSlug(initialPath);
     }
 
@@ -56,9 +136,17 @@ export default function App() {
   }, []);
 
   const navigate = (slug: string | null) => {
+    setShowResources(false);
     setCurrentSlug(slug);
     const url = slug ? `/${slug}` : '/';
     window.history.pushState({}, '', url);
+    window.scrollTo(0, 0);
+  };
+
+  const navigateToResources = () => {
+    setCurrentSlug(null);
+    setShowResources(true);
+    window.history.pushState({}, '', '/resources');
     window.scrollTo(0, 0);
   };
 
@@ -98,7 +186,120 @@ export default function App() {
     <div className="min-h-screen bg-[#fcfcfc] dark:bg-[#1a1a1a] text-[#1a1a1a] dark:text-[#f5f5f5] selection:bg-[#f2f2f2] dark:selection:bg-[#333] selection:text-[#000] dark:selection:text-[#fff]">
       <div className="max-w-2xl mx-auto px-6 py-20 md:py-32">
         <AnimatePresence mode="wait">
-          {!currentSlug ? (
+          {showResources ? (
+            <motion.div
+              key="resources"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.4 }}
+            >
+              <button 
+                onClick={() => navigate(null)}
+                className="flex items-center gap-2 text-sm text-[#999] dark:text-[#666] hover:text-[#1a1a1a] dark:hover:text-[#fff] transition-colors mb-12 group cursor-pointer"
+              >
+                <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+                Back to home
+              </button>
+
+              <header className="mb-12">
+                <h1 className="text-3xl font-medium tracking-tight mb-4">Free Resources</h1>
+                <p className="text-[#666] dark:text-[#999] leading-relaxed">
+                  Download PDF guides, templates, and practice materials to help you prepare for IELTS.
+                </p>
+              </header>
+
+              <section className="mb-12">
+                <h2 className="text-sm font-medium text-[#999] dark:text-[#666] uppercase tracking-wider mb-6">Arsenal of Speaking</h2>
+                <div className="grid gap-4">
+                  {resources.filter(r => r.category === 'speaking').map((resource) => (
+                    <a 
+                      key={resource.id}
+                      href={resource.filePath}
+                      download
+                      className="block p-6 border border-[#f0f0f0] dark:border-[#333] rounded-lg hover:border-[#1a1a1a] dark:hover:border-[#666] transition-all group"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="w-10 h-10 rounded-lg bg-[#f5f5f5] dark:bg-[#333] flex items-center justify-center shrink-0">
+                          <FileText className="w-5 h-5 text-[#666] dark:text-[#999]" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-medium text-[#1a1a1a] dark:text-[#f5f5f5] group-hover:text-[#000] dark:group-hover:text-[#fff] transition-colors">{resource.title}</h3>
+                          <p className="text-sm text-[#666] dark:text-[#999] mt-1 line-clamp-2">{resource.description}</p>
+                          <div className="flex items-center gap-3 mt-3 text-xs text-[#999] dark:text-[#666]">
+                            <span className="uppercase tracking-wide">{resource.fileType}</span>
+                            <span>•</span>
+                            <span>{resource.fileSize}</span>
+                          </div>
+                        </div>
+                        <Download className="w-5 h-5 text-[#999] dark:text-[#666] group-hover:text-[#1a1a1a] dark:group-hover:text-[#fff] transition-colors shrink-0" />
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </section>
+
+              <section className="mb-12">
+                <h2 className="text-sm font-medium text-[#999] dark:text-[#666] uppercase tracking-wider mb-6">Personal Essays</h2>
+                <div className="grid gap-4">
+                  {resources.filter(r => r.category === 'essays').map((resource) => (
+                    <a 
+                      key={resource.id}
+                      href={resource.filePath}
+                      download
+                      className="block p-6 border border-[#f0f0f0] dark:border-[#333] rounded-lg hover:border-[#1a1a1a] dark:hover:border-[#666] transition-all group"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="w-10 h-10 rounded-lg bg-[#f5f5f5] dark:bg-[#333] flex items-center justify-center shrink-0">
+                          <FileText className="w-5 h-5 text-[#666] dark:text-[#999]" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-medium text-[#1a1a1a] dark:text-[#f5f5f5] group-hover:text-[#000] dark:group-hover:text-[#fff] transition-colors">{resource.title}</h3>
+                          <p className="text-sm text-[#666] dark:text-[#999] mt-1 line-clamp-2">{resource.description}</p>
+                          <div className="flex items-center gap-3 mt-3 text-xs text-[#999] dark:text-[#666]">
+                            <span className="uppercase tracking-wide">{resource.fileType}</span>
+                            <span>•</span>
+                            <span>{resource.fileSize}</span>
+                          </div>
+                        </div>
+                        <Download className="w-5 h-5 text-[#999] dark:text-[#666] group-hover:text-[#1a1a1a] dark:group-hover:text-[#fff] transition-colors shrink-0" />
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </section>
+
+              <section>
+                <h2 className="text-sm font-medium text-[#999] dark:text-[#666] uppercase tracking-wider mb-6">Arsenal of Writing</h2>
+                <div className="grid gap-4">
+                  {resources.filter(r => r.category === 'writing').map((resource) => (
+                    <a 
+                      key={resource.id}
+                      href={resource.filePath}
+                      download
+                      className="block p-6 border border-[#f0f0f0] dark:border-[#333] rounded-lg hover:border-[#1a1a1a] dark:hover:border-[#666] transition-all group"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="w-10 h-10 rounded-lg bg-[#f5f5f5] dark:bg-[#333] flex items-center justify-center shrink-0">
+                          <FileText className="w-5 h-5 text-[#666] dark:text-[#999]" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-medium text-[#1a1a1a] dark:text-[#f5f5f5] group-hover:text-[#000] dark:group-hover:text-[#fff] transition-colors">{resource.title}</h3>
+                          <p className="text-sm text-[#666] dark:text-[#999] mt-1 line-clamp-2">{resource.description}</p>
+                          <div className="flex items-center gap-3 mt-3 text-xs text-[#999] dark:text-[#666]">
+                            <span className="uppercase tracking-wide">{resource.fileType}</span>
+                            <span>•</span>
+                            <span>{resource.fileSize}</span>
+                          </div>
+                        </div>
+                        <Download className="w-5 h-5 text-[#999] dark:text-[#666] group-hover:text-[#1a1a1a] dark:group-hover:text-[#fff] transition-colors shrink-0" />
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </section>
+            </motion.div>
+          ) : !currentSlug ? (
             <motion.div
               key="home"
               initial={{ opacity: 0, y: 10 }}
@@ -136,6 +337,12 @@ export default function App() {
                 </p>
 
                 <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+                  <button 
+                    onClick={navigateToResources}
+                    className="flex items-center gap-1 text-[#666] dark:text-[#999] hover:text-[#1a1a1a] dark:hover:text-[#fff] transition-colors cursor-pointer"
+                  >
+                    Resources <ArrowUpRight className="w-3 h-3" />
+                  </button>
                   <a 
                     href="https://t.me/javokhirsielts" 
                     target="_blank" 
