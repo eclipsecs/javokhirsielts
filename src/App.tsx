@@ -34,7 +34,7 @@ export const resources: Resource[] = [
     id: '1',
     title: 'IELTS Writing Task 1 Templates',
     description: 'Essential templates for Task 1 (graphs, charts, diagrams). Learn the structure that gets band 7+.',
-    category: 'pdf-guides',
+    category: 'speaking',
     filePath: '/resources/pdf-guides/writing-task1-templates.pdf',
     fileType: 'pdf',
     fileSize: '2.4 MB'
@@ -43,7 +43,7 @@ export const resources: Resource[] = [
     id: '2',
     title: 'IELTS Writing Task 2 Essay Structure',
     description: 'Complete guide to the 4-paragraph essay structure with example introductions and conclusions.',
-    category: 'pdf-guides',
+    category: 'writing',
     filePath: '/resources/pdf-guides/writing-task2-structure.pdf',
     fileType: 'pdf',
     fileSize: '1.8 MB'
@@ -52,7 +52,7 @@ export const resources: Resource[] = [
     id: '3',
     title: 'Speaking Band Descriptors Guide',
     description: 'Understand what examiners look for in each band score. Includes examples for Speaking Parts 1-3.',
-    category: 'pdf-guides',
+    category: 'speaking',
     filePath: '/resources/pdf-guides/speaking-band-descriptors.pdf',
     fileType: 'pdf',
     fileSize: '3.1 MB'
@@ -61,7 +61,7 @@ export const resources: Resource[] = [
     id: '4',
     title: 'Essay Planning Template',
     description: 'Use this to plan your Task 2 essays. Includes sections for thesis, arguments, and examples.',
-    category: 'templates',
+    category: 'essays',
     filePath: '/resources/templates/essay-planning-template.docx',
     fileType: 'docx',
     fileSize: '156 KB'
@@ -70,7 +70,7 @@ export const resources: Resource[] = [
     id: '5',
     title: 'Speaking Part 2 Notes Template',
     description: 'Cue card preparation template to help you structure your 2-minute talk.',
-    category: 'templates',
+    category: 'essays',
     filePath: '/resources/templates/speaking-part2-notes.docx',
     fileType: 'docx',
     fileSize: '89 KB'
@@ -79,7 +79,7 @@ export const resources: Resource[] = [
     id: '6',
     title: 'Sample Answers (Band 7-9)',
     description: 'Real example answers with examiner comments. See exactly what makes a high-scoring answer.',
-    category: 'practice',
+    category: 'writing',
     filePath: '/resources/practice/sample-answers.pdf',
     fileType: 'pdf',
     fileSize: '4.2 MB'
@@ -88,7 +88,7 @@ export const resources: Resource[] = [
     id: '7',
     title: 'Vocabulary for Essays',
     description: 'High-frequency academic vocabulary organized by topic. Essential for Writing and Speaking.',
-    category: 'practice',
+    category: 'writing',
     filePath: '/resources/practice/vocabulary-for-essays.pdf',
     fileType: 'pdf',
     fileSize: '1.5 MB'
