@@ -23,7 +23,7 @@ export interface Resource {
   id: string;
   title: string;
   description: string;
-  category: 'speaking' | 'essays' | 'writing';
+  category: 'arsenal-of-speaking' | 'personal-essays' | 'arsenal-of-writing';
   filePath: string;
   fileType: 'pdf' | 'docx';
   fileSize: string;
@@ -32,66 +32,12 @@ export interface Resource {
 export const resources: Resource[] = [
   {
     id: '1',
-    title: 'IELTS Writing Task 1 Templates',
-    description: 'Essential templates for Task 1 (graphs, charts, diagrams). Learn the structure that gets band 7+.',
-    category: 'speaking',
-    filePath: '/resources/pdf-guides/writing-task1-templates.pdf',
+    title: 'Speak 1.1',
+    description: 'Essential speaking materials for IELTS preparation.',
+    category: 'arsenal-of-speaking',
+    filePath: '/resources/arsenal of speaking/Speak 1.1.pdf',
     fileType: 'pdf',
-    fileSize: '2.4 MB'
-  },
-  {
-    id: '2',
-    title: 'IELTS Writing Task 2 Essay Structure',
-    description: 'Complete guide to the 4-paragraph essay structure with example introductions and conclusions.',
-    category: 'writing',
-    filePath: '/resources/pdf-guides/writing-task2-structure.pdf',
-    fileType: 'pdf',
-    fileSize: '1.8 MB'
-  },
-  {
-    id: '3',
-    title: 'Speaking Band Descriptors Guide',
-    description: 'Understand what examiners look for in each band score. Includes examples for Speaking Parts 1-3.',
-    category: 'speaking',
-    filePath: '/resources/pdf-guides/speaking-band-descriptors.pdf',
-    fileType: 'pdf',
-    fileSize: '3.1 MB'
-  },
-  {
-    id: '4',
-    title: 'Essay Planning Template',
-    description: 'Use this to plan your Task 2 essays. Includes sections for thesis, arguments, and examples.',
-    category: 'essays',
-    filePath: '/resources/templates/essay-planning-template.docx',
-    fileType: 'docx',
-    fileSize: '156 KB'
-  },
-  {
-    id: '5',
-    title: 'Speaking Part 2 Notes Template',
-    description: 'Cue card preparation template to help you structure your 2-minute talk.',
-    category: 'essays',
-    filePath: '/resources/templates/speaking-part2-notes.docx',
-    fileType: 'docx',
-    fileSize: '89 KB'
-  },
-  {
-    id: '6',
-    title: 'Sample Answers (Band 7-9)',
-    description: 'Real example answers with examiner comments. See exactly what makes a high-scoring answer.',
-    category: 'writing',
-    filePath: '/resources/practice/sample-answers.pdf',
-    fileType: 'pdf',
-    fileSize: '4.2 MB'
-  },
-  {
-    id: '7',
-    title: 'Vocabulary for Essays',
-    description: 'High-frequency academic vocabulary organized by topic. Essential for Writing and Speaking.',
-    category: 'writing',
-    filePath: '/resources/practice/vocabulary-for-essays.pdf',
-    fileType: 'pdf',
-    fileSize: '1.5 MB'
+    fileSize: '2.2 MB'
   }
 ];
 
@@ -212,7 +158,7 @@ export default function App() {
               <section className="mb-12">
                 <h2 className="text-sm font-medium text-[#999] dark:text-[#666] uppercase tracking-wider mb-6">Arsenal of Speaking</h2>
                 <div className="grid gap-4">
-                  {resources.filter(r => r.category === 'speaking').map((resource) => (
+                  {resources.filter(r => r.category === 'arsenal-of-speaking').map((resource) => (
                     <a 
                       key={resource.id}
                       href={resource.filePath}
@@ -242,7 +188,7 @@ export default function App() {
               <section className="mb-12">
                 <h2 className="text-sm font-medium text-[#999] dark:text-[#666] uppercase tracking-wider mb-6">Personal Essays</h2>
                 <div className="grid gap-4">
-                  {resources.filter(r => r.category === 'essays').map((resource) => (
+                  {resources.filter(r => r.category === 'personal-essays').map((resource) => (
                     <a 
                       key={resource.id}
                       href={resource.filePath}
@@ -272,7 +218,7 @@ export default function App() {
               <section>
                 <h2 className="text-sm font-medium text-[#999] dark:text-[#666] uppercase tracking-wider mb-6">Arsenal of Writing</h2>
                 <div className="grid gap-4">
-                  {resources.filter(r => r.category === 'writing').map((resource) => (
+                  {resources.filter(r => r.category === 'arsenal-of-writing').map((resource) => (
                     <a 
                       key={resource.id}
                       href={resource.filePath}
