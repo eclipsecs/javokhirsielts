@@ -38,6 +38,24 @@ export const resources: Resource[] = [
     filePath: '/resources/arsenal of speaking/Speak 1.1.pdf',
     fileType: 'pdf',
     fileSize: '2.2 MB'
+  },
+  {
+    id: '2',
+    title: 'Task 1 Chunks',
+    description: 'Useful phrases and structures for IELTS Writing Task 1.',
+    category: 'arsenal-of-writing',
+    filePath: '/resources/arsenal of writing/task 1 chunks.docx',
+    fileType: 'docx',
+    fileSize: '1.9 MB'
+  },
+  {
+    id: '3',
+    title: 'My Task 2s',
+    description: 'Sample Task 2 essays for practice and learning.',
+    category: 'personal-essays',
+    filePath: '/resources/personal essays/my task 2s.docx',
+    fileType: 'docx',
+    fileSize: '193 KB'
   }
 ];
 
@@ -149,9 +167,9 @@ export default function App() {
               </button>
 
               <header className="mb-12">
-                <h1 className="text-3xl font-medium tracking-tight mb-4">Free Resources</h1>
+                <h1 className="text-3xl font-medium tracking-tight mb-4">Storage</h1>
                 <p className="text-[#666] dark:text-[#999] leading-relaxed">
-                  Download PDF guides, templates, and practice materials to help you prepare for IELTS.
+                  Welcome to my storage where I keep everything I create along the way. Although I would've not shared, but I'm not your mother, I can't stop your from biting.
                 </p>
               </header>
 
