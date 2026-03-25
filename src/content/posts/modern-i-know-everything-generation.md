@@ -8,6 +8,8 @@ Phones — a device with multifunctional features like calling, messaging, chatt
 
 This issue becomes even more concerning when it comes to younger generations. Children and teenagers who become absorbed in screens often lose focus on their education. They skip classes, ignore assignments, and lose motivation to participate in school activities. Gradually, their academic performance declines. They struggle to understand complex ideas, fall behind their peers, and lose confidence in their abilities. What’s worse, they may not even realize how much they are sacrificing until it’s too late.
 
+Despite this mix of conviction and justification, the issue become even more pressing, primarily towards younger generations.
+
 At the same time, this lifestyle takes a serious toll on physical health. Spending long hours sitting indoors leads to a lack of movement. People no longer engage in physical activities that keep the body active and strong. As a result, their energy levels drop, their immune systems weaken, and their overall well-being deteriorates. A lifestyle built around screens slowly replaces one that once included outdoor play, exercise, and real-world interaction.
 
 Alongside these habits, another dangerous pattern emerges—irresponsible spending. Many individuals feel pressured to maintain a certain image. They buy expensive items, not out of necessity, but to impress others or feel a sense of belonging. Social media often fuels this desire, creating unrealistic standards and constant comparison. People start chasing appearances rather than stability.
