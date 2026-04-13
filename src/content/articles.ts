@@ -26,6 +26,7 @@ import uzbekCultureContent from './posts/uzbek-culture.md?raw';
 import wtfIsIeltsContent from './posts/wtf-is-ielts.md?raw';
 import sentenceMiningImage from './images/sentence-mining.png?url';
 import modernIKnowEverythingGenerationContent from './posts/modern-i-know-everything-generation.md?raw';
+import roadToBand9Content from './posts/road-to-band-9.md?raw';
 
 export interface Article {
   title: string;
@@ -76,6 +77,12 @@ const parseDate = (dateStr: string): number => {
 
 // Raw articles data (unsorted)
 const rawArticles: Omit<Article, 'isNew'>[] = [
+  { 
+    title: "Road to Band 9", 
+    date: "Apr 13, 2026", 
+    slug: "road-to-band-9",
+    content: roadToBand9Content 
+  },
   { 
     title: "Modern I know everything generation", 
     date: "Mar 22, 2026", 
