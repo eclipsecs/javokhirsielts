@@ -44,7 +44,7 @@
 }
 
 .markdown-content img {
-  @apply rounded-lg my-4 w-full h-auto object-cover border-none outline-none;
+  @apply rounded-lg my-4 max-w-full h-auto border-none outline-none;
 }
 
 .markdown-content a {

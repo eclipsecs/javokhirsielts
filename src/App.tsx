@@ -18,6 +18,7 @@ import rehypeRaw from 'rehype-raw';
 import { articles, Article } from './content/articles';
 import { FileText, Download } from 'lucide-react';
 import sentenceMiningImage from './content/images/sentence-mining.png';
+import rtb9Image from './content/images/rtb9-img.png';
 
 export interface Resource {
   id: string;
@@ -405,7 +406,9 @@ export default function App() {
                         const imageMap: Record<string, string> = {
                           '/src/content/images/sentence-mining.png': sentenceMiningImage,
                           'sentence-mining.png': sentenceMiningImage,
-                          '/images/sentence-mining.png': sentenceMiningImage
+                          '/images/sentence-mining.png': sentenceMiningImage,
+                          '/src/content/images/rtb9-img.png': rtb9Image,
+                          'rtb9-img.png': rtb9Image,
                         };
                         // Try to find matching image
                         let imageSrc = src;
