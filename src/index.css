@@ -85,8 +85,8 @@
 }
 
 @keyframes moon-glow {
-  0%, 100% { filter: drop-shadow(0 0 6px #a78bfa) drop-shadow(0 0 12px #7c3aed66); }
-  50% { filter: drop-shadow(0 0 10px #c4b5fd) drop-shadow(0 0 20px #7c3aed99); }
+  0%, 100% { filter: drop-shadow(0 0 6px var(--bolt-glow)); }
+  50% { filter: drop-shadow(0 0 12px var(--bolt-glow)); }
 }
 
 .moon-icon {
@@ -94,8 +94,8 @@
 }
 
 @keyframes sparkle-shimmer {
-  0%, 100% { transform: scale(1) translateY(0px); filter: drop-shadow(0 0 6px rgba(234,88,12,0.3)); }
-  50% { transform: scale(1.05) translateY(-3px); filter: drop-shadow(0 0 14px rgba(234,88,12,0.55)); }
+  0%, 100% { transform: scale(1) translateY(0px); filter: drop-shadow(0 0 6px var(--bolt-glow)); }
+  50% { transform: scale(1.05) translateY(-3px); filter: drop-shadow(0 0 14px var(--bolt-glow)); }
 }
 
 .work-icon {

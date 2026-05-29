@@ -1,11 +1,13 @@
+export type StatusType = 'rest' | 'workout' | 'working';
+
 export interface CurrentStatus {
-  emoji: string;
+  status: StatusType;
   label: string;
   subtitle: string;
 }
 
 export const currentStatus: CurrentStatus = {
-  emoji: '🌙',
+  status: 'working',
   label: 'Taking rest',
   subtitle: 'Recharging for tomorrow',
 };

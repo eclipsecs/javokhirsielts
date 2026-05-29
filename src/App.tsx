@@ -17,6 +17,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { articles } from './content/articles';
 import { picks, categoryLabel, categoryIcon, PickCategory } from './content/picks';
+import { currentStatus } from './content/now';
 import { FileText, Download } from 'lucide-react';
 import sentenceMiningImage from './content/images/sentence-mining.png';
 import rtb9Image from './content/images/rtb9-img.png';
@@ -407,48 +408,83 @@ export default function App() {
                 <div className="hidden xl:block w-56 shrink-0">
                   <div className="rounded-2xl border border-[#e2e8f0] dark:border-[#2a2a2a] bg-[#f8fafc] dark:bg-[#1a1a1a] shadow-sm overflow-hidden">
                     <div className="px-5 pt-6 pb-5">
-                      <svg viewBox="0 0 80 80" className="work-icon w-14 h-14 mb-5" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                          <linearGradient id="dbBar" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stopColor="var(--bolt-bright)"/>
-                            <stop offset="100%" stopColor="var(--bolt-mid)"/>
-                          </linearGradient>
-                          <linearGradient id="dbPlateL" x1="20%" y1="10%" x2="80%" y2="90%">
-                            <stop offset="0%" stopColor="var(--bolt-bright)"/>
-                            <stop offset="100%" stopColor="var(--bolt-mid)"/>
-                          </linearGradient>
-                          <linearGradient id="dbPlateR" x1="20%" y1="10%" x2="80%" y2="90%">
-                            <stop offset="0%" stopColor="var(--bolt-mid)"/>
-                            <stop offset="100%" stopColor="var(--bolt-deep)"/>
-                          </linearGradient>
-                          <linearGradient id="dbPlateSide" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stopColor="var(--bolt-deep)"/>
-                            <stop offset="100%" stopColor="var(--bolt-mid)"/>
-                          </linearGradient>
-                          <filter id="dbGlow" x="-30%" y="-30%" width="160%" height="160%">
-                            <feDropShadow dx="0" dy="4" stdDeviation="5" floodColor="var(--bolt-glow)" floodOpacity="1"/>
-                          </filter>
-                        </defs>
-                        {/* Bar */}
-                        <rect x="22" y="36" width="36" height="8" rx="4" fill="url(#dbBar)"/>
-                        {/* Left plate outer */}
-                        <rect x="8" y="24" width="14" height="32" rx="5" fill="url(#dbPlateL)" filter="url(#dbGlow)"/>
-                        {/* Left plate side depth */}
-                        <rect x="20" y="24" width="4" height="32" rx="2" fill="url(#dbPlateSide)" opacity="0.7"/>
-                        {/* Left plate gloss */}
-                        <rect x="10" y="26" width="5" height="10" rx="2" fill="white" opacity="0.2"/>
-                        {/* Right plate outer */}
-                        <rect x="58" y="24" width="14" height="32" rx="5" fill="url(#dbPlateR)" filter="url(#dbGlow)"/>
-                        {/* Right plate side depth */}
-                        <rect x="56" y="24" width="4" height="32" rx="2" fill="url(#dbPlateSide)" opacity="0.7"/>
-                        {/* Right plate gloss */}
-                        <rect x="60" y="26" width="5" height="10" rx="2" fill="white" opacity="0.2"/>
-                        {/* Bar top gloss */}
-                        <rect x="24" y="37" width="32" height="3" rx="1.5" fill="white" opacity="0.15"/>
-                      </svg>
-                      <p className="text-[10px] font-semibold text-orange-400 dark:text-orange-500 uppercase tracking-widest mb-1">Right now</p>
-                      <p className="text-sm font-bold text-[#0f172a] dark:text-white leading-snug">Working out</p>
-                      <p className="text-xs text-slate-400 dark:text-slate-500 mt-1">Gym · pushing limits</p>
+                      {currentStatus.status === 'working' && (
+                        <svg viewBox="0 0 80 80" className="work-icon w-14 h-14 mb-5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <defs>
+                            <linearGradient id="boltGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stopColor="var(--bolt-bright)"/>
+                              <stop offset="100%" stopColor="var(--bolt-mid)"/>
+                            </linearGradient>
+                            <linearGradient id="boltSide" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stopColor="var(--bolt-mid)"/>
+                              <stop offset="100%" stopColor="var(--bolt-deep)"/>
+                            </linearGradient>
+                            <filter id="boltDrop" x="-30%" y="-30%" width="160%" height="160%">
+                              <feDropShadow dx="0" dy="4" stdDeviation="5" floodColor="var(--bolt-glow)" floodOpacity="1"/>
+                            </filter>
+                          </defs>
+                          <path d="M46 8 L28 38 L38 38 L34 72 L58 34 L46 34 Z" fill="url(#boltGrad)" filter="url(#boltDrop)"/>
+                          <path d="M58 34 L46 34 L38 38 L42 38 L50 34 Z" fill="url(#boltSide)" opacity="0.6"/>
+                          <path d="M40 12 L30 34 L36 34" stroke="var(--bolt-gloss)" strokeWidth="1.5" strokeLinecap="round" opacity="0.7"/>
+                        </svg>
+                      )}
+                      {currentStatus.status === 'workout' && (
+                        <svg viewBox="0 0 80 80" className="work-icon w-14 h-14 mb-5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <defs>
+                            <linearGradient id="dbBar" x1="0%" y1="0%" x2="0%" y2="100%">
+                              <stop offset="0%" stopColor="var(--bolt-bright)"/>
+                              <stop offset="100%" stopColor="var(--bolt-mid)"/>
+                            </linearGradient>
+                            <linearGradient id="dbPlateL" x1="20%" y1="10%" x2="80%" y2="90%">
+                              <stop offset="0%" stopColor="var(--bolt-bright)"/>
+                              <stop offset="100%" stopColor="var(--bolt-mid)"/>
+                            </linearGradient>
+                            <linearGradient id="dbPlateR" x1="20%" y1="10%" x2="80%" y2="90%">
+                              <stop offset="0%" stopColor="var(--bolt-mid)"/>
+                              <stop offset="100%" stopColor="var(--bolt-deep)"/>
+                            </linearGradient>
+                            <linearGradient id="dbPlateSide" x1="0%" y1="0%" x2="100%" y2="0%">
+                              <stop offset="0%" stopColor="var(--bolt-deep)"/>
+                              <stop offset="100%" stopColor="var(--bolt-mid)"/>
+                            </linearGradient>
+                            <filter id="dbGlow" x="-30%" y="-30%" width="160%" height="160%">
+                              <feDropShadow dx="0" dy="4" stdDeviation="5" floodColor="var(--bolt-glow)" floodOpacity="1"/>
+                            </filter>
+                          </defs>
+                          <rect x="22" y="36" width="36" height="8" rx="4" fill="url(#dbBar)"/>
+                          <rect x="8" y="24" width="14" height="32" rx="5" fill="url(#dbPlateL)" filter="url(#dbGlow)"/>
+                          <rect x="20" y="24" width="4" height="32" rx="2" fill="url(#dbPlateSide)" opacity="0.7"/>
+                          <rect x="10" y="26" width="5" height="10" rx="2" fill="white" opacity="0.2"/>
+                          <rect x="58" y="24" width="14" height="32" rx="5" fill="url(#dbPlateR)" filter="url(#dbGlow)"/>
+                          <rect x="56" y="24" width="4" height="32" rx="2" fill="url(#dbPlateSide)" opacity="0.7"/>
+                          <rect x="60" y="26" width="5" height="10" rx="2" fill="white" opacity="0.2"/>
+                          <rect x="24" y="37" width="32" height="3" rx="1.5" fill="white" opacity="0.15"/>
+                        </svg>
+                      )}
+                      {currentStatus.status === 'rest' && (
+                        <svg viewBox="0 0 80 80" className="moon-icon w-14 h-14 mb-5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <defs>
+                            <mask id="moonMask">
+                              <rect width="80" height="80" fill="black"/>
+                              <circle cx="38" cy="40" r="22" fill="white"/>
+                              <circle cx="51" cy="33" r="18" fill="black"/>
+                            </mask>
+                            <linearGradient id="moonGrad" x1="20%" y1="0%" x2="80%" y2="100%">
+                              <stop offset="0%" stopColor="var(--bolt-bright)"/>
+                              <stop offset="60%" stopColor="var(--bolt-mid)"/>
+                              <stop offset="100%" stopColor="var(--bolt-deep)"/>
+                            </linearGradient>
+                            <filter id="moonDrop" x="-30%" y="-30%" width="160%" height="160%">
+                              <feDropShadow dx="0" dy="3" stdDeviation="5" floodColor="var(--bolt-glow)" floodOpacity="1"/>
+                            </filter>
+                          </defs>
+                          <circle cx="38" cy="40" r="22" fill="url(#moonGrad)" mask="url(#moonMask)" filter="url(#moonDrop)"/>
+                          <path d="M32 24 Q26 36 30 48" stroke="var(--bolt-gloss)" strokeWidth="1.5" strokeLinecap="round" opacity="0.5" mask="url(#moonMask)"/>
+                        </svg>
+                      )}
+                      <p className="text-[10px] font-semibold text-[#999] dark:text-[#666] uppercase tracking-widest mb-1">Right now</p>
+                      <p className="text-sm font-bold text-[#0f172a] dark:text-white leading-snug">{currentStatus.label}</p>
+                      <p className="text-xs text-[#999] dark:text-[#666] mt-1">{currentStatus.subtitle}</p>
                     </div>
                   </div>
                 </div>
