@@ -1,4 +1,4 @@
-export type PickCategory = 'music' | 'podcast' | 'movie';
+export type PickCategory = 'music' | 'podcast' | 'movie' | 'article';
 
 export interface Pick {
   category: PickCategory;
@@ -29,7 +29,7 @@ export const picks: Pick[] = [
     title: 'If I Lose Myself',
     creator: 'OneRepublic',
     timeAgo: '1 day ago',
-    cover: 'https://upload.wikimedia.org/wikipedia/en/thumb/5/52/OneRepublic_-_Native.jpg/250px-OneRepublic_-_Native.jpg',
+    cover: 'https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/93/c1/37/93c137c8-90d8-687a-4f8a-f117ca99c0a1/14UMGIM12027.rgb.jpg/100x100bb.jpg',
   },
   {
     category: 'music',
@@ -114,10 +114,12 @@ export const categoryLabel: Record<PickCategory, string> = {
   music: 'music',
   podcast: 'podcasts',
   movie: 'movies',
+  article: 'articles',
 };
 
 export const categoryIcon: Record<PickCategory, string> = {
   music: '♪',
   podcast: '◉',
   movie: '▶',
+  article: '✦',
 };

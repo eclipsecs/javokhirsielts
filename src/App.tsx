@@ -182,7 +182,7 @@ export default function App() {
       <div className="space-y-6">
         {groupedPicks.map(({ category, items }) => (
           <div key={category}>
-            <p className="text-[10px] uppercase tracking-widest text-[#bbb] dark:text-[#555] mb-3 flex items-center gap-1.5">
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-[#999] dark:text-[#555] mb-3 flex items-center gap-1.5">
               <span>{categoryIcon[category]}</span>
               {categoryLabel[category]}
             </p>
@@ -532,6 +532,44 @@ export default function App() {
                           </span>
                         </button>
                       </motion.div>
+                    ))}
+                  </div>
+                </section>
+
+                <section className="xl:hidden mt-16">
+                  <h2 className="text-sm font-medium text-[#999] dark:text-[#666] uppercase tracking-wider mb-8">On my radar</h2>
+                  <div className="space-y-8">
+                    {groupedPicks.map(({ category, items }) => (
+                      <div key={category}>
+                        <p className="text-xs font-semibold uppercase tracking-widest text-[#999] dark:text-[#555] mb-4 flex items-center gap-2">
+                          <span>{categoryIcon[category]}</span>
+                          {categoryLabel[category]}
+                        </p>
+                        <div className="space-y-3">
+                          {items.map((pick, i) => {
+                            const content = (
+                              <div className="flex items-center gap-3 group">
+                                {pick.cover ? (
+                                  <img src={pick.cover} alt={pick.title} className="w-9 h-9 rounded object-cover shrink-0" style={{ width: '36px', height: '36px', minWidth: '36px' }} />
+                                ) : (
+                                  <div className="w-9 h-9 rounded bg-[#f0f0f0] dark:bg-[#333] shrink-0" />
+                                )}
+                                <div className="min-w-0">
+                                  <p className="text-sm font-medium text-[#1a1a1a] dark:text-[#f5f5f5] leading-snug truncate group-hover:text-[#555] dark:group-hover:text-[#aaa] transition-colors">{pick.title}</p>
+                                  <p className="text-xs text-[#999] dark:text-[#666] mt-0.5 truncate">{pick.creator}</p>
+                                </div>
+                              </div>
+                            );
+                            return (
+                              <div key={i}>
+                                {pick.url ? (
+                                  <a href={pick.url} target="_blank" rel="noopener noreferrer" className="block">{content}</a>
+                                ) : content}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
                     ))}
                   </div>
                 </section>
