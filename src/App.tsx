@@ -367,11 +367,12 @@ export default function App() {
                     href="https://cambridgeonline.uz/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#1a1a1a] dark:text-[#f5f5f5] transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-0.5 font-medium italic text-[#1a1a1a] dark:text-[#f5f5f5] group/link transition-colors cursor-pointer"
                     onMouseEnter={handleCambridgeMouseEnter}
                     onMouseLeave={handleCambridgeMouseLeave}
                   >
                     cambridgeonline.uz
+                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover/link:opacity-100 transition-opacity -translate-y-0.5" />
                   </a>.
                 </p>
 
