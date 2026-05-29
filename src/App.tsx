@@ -10,7 +10,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowUpRight, ArrowLeft, Moon, Sun } from 'lucide-react';
+import { ArrowUpRight, ArrowLeft, Moon, Sun, FileText, Download } from 'lucide-react';
 import { annotate } from 'rough-notation';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -18,7 +18,6 @@ import rehypeRaw from 'rehype-raw';
 import { articles } from './content/articles';
 import { picks, categoryLabel, categoryIcon, PickCategory } from './content/picks';
 import { currentStatus } from './content/now';
-import { FileText, Download } from 'lucide-react';
 import sentenceMiningImage from './content/images/sentence-mining.png';
 import rtb9Image from './content/images/rtb9-img.png';
 import orangeLogo from './content/images/orange-logo.png';
@@ -210,8 +209,8 @@ export default function App() {
 
   const getStatusSentence = (s: typeof currentStatus) => {
     switch (s.status) {
-      case 'reading': return s.item?.title ? `Turning the pages of "${s.item.title}"` : 'Turning the pages';
-      case 'workout': return s.item?.title ? `Lifting ${s.item.title}` : 'Lifting weights';
+      case 'reading': return 'Turning the pages';
+      case 'workout': return 'Lifting weights';
       case 'working': return s.workingMode === 'teaching' ? "I'm teaching" : "I'm studying";
       case 'rest': return "I'm switched off from everywhere";
     }
