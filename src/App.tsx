@@ -546,31 +546,13 @@ export default function App() {
                           if (!href.startsWith('http')) href = 'https://' + href;
                           hostname = new URL(href).hostname.replace('www.', '');
                         } catch {}
-                        return currentStatus.linkTitle ? (
-                          <a href={href} target="_blank" rel="noopener noreferrer" className="mt-3 flex items-start gap-2.5 p-2.5 rounded-xl border border-[#e2e8f0] dark:border-[#2a2a2a] bg-white dark:bg-[#111] hover:border-[#cbd5e1] dark:hover:border-[#444] transition-colors group/link">
-                            <div className="min-w-0 flex-1">
-                              <p className="text-[11px] font-medium text-[#1a1a1a] dark:text-[#f5f5f5] leading-snug line-clamp-2 group-hover/link:text-[#000] dark:group-hover/link:text-white transition-colors">{currentStatus.linkTitle}</p>
-                              <p className="text-[10px] text-[#bbb] dark:text-[#555] mt-1">{hostname}</p>
-                            </div>
-                            <ArrowUpRight className="w-3 h-3 shrink-0 mt-0.5 text-[#bbb] dark:text-[#555] group-hover/link:text-[#999] transition-colors" />
-                          </a>
-                        ) : (
-                          <a href={href} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-1 text-[10px] text-[#999] dark:text-[#666] hover:text-[#1a1a1a] dark:hover:text-[#f5f5f5] transition-colors">
-                            <ArrowUpRight className="w-2.5 h-2.5 shrink-0" />
-                            {hostname}
+                        return (
+                          <a href={href} target="_blank" rel="noopener noreferrer" className="mt-2 flex items-center gap-1 group/link">
+                            <span className="text-[11px] font-medium text-[#1a1a1a] dark:text-[#f5f5f5] group-hover/link:underline underline-offset-2 line-clamp-1">{currentStatus.linkTitle || hostname}</span>
+                            <ArrowUpRight className="w-2.5 h-2.5 shrink-0 text-[#999] dark:text-[#666]" />
                           </a>
                         );
                       })()}
-                      {currentStatus.item && (
-                        currentStatus.item.url ? (
-                          <a href={currentStatus.item.url} target="_blank" rel="noopener noreferrer" className="mt-3 flex items-start gap-1.5 group/item">
-                            <span className="text-[10px] leading-snug text-[#1a1a1a] dark:text-[#f5f5f5] font-medium group-hover/item:underline underline-offset-2 line-clamp-2">{currentStatus.item.title}</span>
-                            <ArrowUpRight className="w-2.5 h-2.5 shrink-0 mt-0.5 text-[#999] dark:text-[#666]" />
-                          </a>
-                        ) : (
-                          <p className="mt-3 text-[10px] leading-snug text-[#1a1a1a] dark:text-[#f5f5f5] font-medium line-clamp-2">{currentStatus.item.title}</p>
-                        )
-                      )}
                     </div>
                   </div>
                 </div>
