@@ -8,15 +8,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowUpRight, ArrowLeft, Moon, Sun } from 'lucide-react';
+import { ArrowUpRight, ArrowLeft, Moon, Sun, Laptop } from 'lucide-react';
 import { annotate } from 'rough-notation';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
-import { articles, Article } from './content/articles';
+import { articles } from './content/articles';
 import { picks, categoryLabel, categoryIcon, PickCategory } from './content/picks';
+import { currentStatus } from './content/now';
 import { FileText, Download } from 'lucide-react';
 import sentenceMiningImage from './content/images/sentence-mining.png';
 import rtb9Image from './content/images/rtb9-img.png';
@@ -174,7 +175,7 @@ export default function App() {
   })).filter(g => g.items.length > 0);
 
   const Sidebar = () => (
-    <div className="hidden xl:block w-48 shrink-0 mt-[280px]">
+    <div className="hidden xl:block w-48 shrink-0">
     <aside className="sticky top-12">
       <p className="text-xs font-medium text-[#999] dark:text-[#666] uppercase tracking-widest mb-6">On my radar</p>
       <div className="space-y-6">
@@ -217,8 +218,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#fcfcfc] dark:bg-[#1a1a1a] text-[#1a1a1a] dark:text-[#f5f5f5] selection:bg-[#f2f2f2] dark:selection:bg-[#333] selection:text-[#000] dark:selection:text-[#fff]">
-      <div className="max-w-2xl xl:max-w-5xl mx-auto px-6 py-20 md:py-32 xl:flex xl:gap-20 xl:items-start">
-        <div className="flex-1 min-w-0">
+      <div className="max-w-2xl xl:max-w-5xl mx-auto px-6 py-20 md:py-32">
         <AnimatePresence mode="wait">
           {showResources ? (
             <motion.div
@@ -354,6 +354,8 @@ export default function App() {
                     {darkMode ? <Sun className="w-5 h-5 text-[#f5f5f5]" /> : <Moon className="w-5 h-5 text-[#1a1a1a]" />}
                   </button>
                 </div>
+                <div className="xl:flex xl:gap-20 xl:items-start">
+                <div className="flex-1 min-w-0">
                 <h1 className="text-xl font-medium mb-4">Umerov Javokhir</h1>
                 <p className="text-[#666] dark:text-[#999] leading-relaxed mb-6">
                   Hi, i'm mitro, i teach and workout. Currently teaching at{' '}
@@ -402,9 +404,22 @@ export default function App() {
                     Register for course <ArrowUpRight className="w-3 h-3" />
                   </a>
                 </div>
+                </div>
+                <div className="hidden xl:block w-56 shrink-0">
+                  <div className="rounded-2xl border border-[#e8e8e8] dark:border-[#2a2a2a] bg-white dark:bg-[#1c1c1c] shadow-sm overflow-hidden">
+                    <div className="bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-amber-950/30 dark:via-orange-950/20 dark:to-yellow-900/20 px-5 pt-6 pb-5">
+                      <Laptop className="work-icon w-10 h-10 text-amber-500 dark:text-amber-400 mb-4 fill-amber-100 dark:fill-amber-900/40" strokeWidth={1.5} />
+                      <p className="text-[10px] font-semibold text-amber-500 dark:text-amber-400 uppercase tracking-widest mb-1">Right now</p>
+                      <p className="text-sm font-bold text-[#1a1a1a] dark:text-[#f0f0f0] leading-snug">Working</p>
+                      <p className="text-xs text-[#999] dark:text-[#666] mt-1">Deep focus mode</p>
+                    </div>
+                  </div>
+                </div>
+                </div>
               </header>
 
-              <main>
+              <div className="xl:flex xl:gap-20 xl:items-start">
+              <main className="flex-1 min-w-0">
                 <section>
                   <h2 className="text-sm font-medium text-[#999] dark:text-[#666] uppercase tracking-wider mb-8">Writing</h2>
                   <div className="space-y-1">
@@ -443,6 +458,8 @@ export default function App() {
                   </div>
                 </section>
               </main>
+              <Sidebar />
+              </div>
             </motion.div>
           ) : (
             <motion.div
@@ -517,8 +534,6 @@ export default function App() {
         <footer className="mt-32 pt-12 border-t border-[#f0f0f0] dark:border-[#333] text-sm text-[#999] dark:text-[#666]">
           <p>© {new Date().getFullYear()} Javokhir</p>
         </footer>
-        </div>
-        <Sidebar />
       </div>
     </div>
   );
