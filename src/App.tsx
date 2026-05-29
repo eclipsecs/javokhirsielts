@@ -198,6 +198,7 @@ export default function App() {
                     <div className="min-w-0">
                       <p className="text-xs font-medium text-[#1a1a1a] dark:text-[#f5f5f5] leading-snug truncate group-hover:text-[#555] dark:group-hover:text-[#aaa] transition-colors">{pick.title}</p>
                       <p className="text-[11px] text-[#999] dark:text-[#666] mt-0.5 truncate">{pick.creator}</p>
+                      {pick.readTime && <p className="text-[10px] text-[#bbb] dark:text-[#555] mt-0.5">{pick.readTime}</p>}
                     </div>
                   </div>
                 );
@@ -557,6 +558,7 @@ export default function App() {
                                 <div className="min-w-0">
                                   <p className="text-sm font-medium text-[#1a1a1a] dark:text-[#f5f5f5] leading-snug truncate group-hover:text-[#555] dark:group-hover:text-[#aaa] transition-colors">{pick.title}</p>
                                   <p className="text-xs text-[#999] dark:text-[#666] mt-0.5 truncate">{pick.creator}</p>
+                                  {pick.readTime && <p className="text-[11px] text-[#bbb] dark:text-[#555] mt-0.5">{pick.readTime}</p>}
                                 </div>
                               </div>
                             );
