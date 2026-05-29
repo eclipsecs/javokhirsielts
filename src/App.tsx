@@ -10,14 +10,13 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowUpRight, ArrowLeft, Moon, Sun, Laptop } from 'lucide-react';
+import { ArrowUpRight, ArrowLeft, Moon, Sun } from 'lucide-react';
 import { annotate } from 'rough-notation';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { articles } from './content/articles';
 import { picks, categoryLabel, categoryIcon, PickCategory } from './content/picks';
-import { currentStatus } from './content/now';
 import { FileText, Download } from 'lucide-react';
 import sentenceMiningImage from './content/images/sentence-mining.png';
 import rtb9Image from './content/images/rtb9-img.png';
@@ -406,12 +405,50 @@ export default function App() {
                 </div>
                 </div>
                 <div className="hidden xl:block w-56 shrink-0">
-                  <div className="rounded-2xl border border-[#e8e8e8] dark:border-[#2a2a2a] bg-white dark:bg-[#1c1c1c] shadow-sm overflow-hidden">
-                    <div className="bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-amber-950/30 dark:via-orange-950/20 dark:to-yellow-900/20 px-5 pt-6 pb-5">
-                      <Laptop className="work-icon w-10 h-10 text-amber-500 dark:text-amber-400 mb-4 fill-amber-100 dark:fill-amber-900/40" strokeWidth={1.5} />
-                      <p className="text-[10px] font-semibold text-amber-500 dark:text-amber-400 uppercase tracking-widest mb-1">Right now</p>
-                      <p className="text-sm font-bold text-[#1a1a1a] dark:text-[#f0f0f0] leading-snug">Working</p>
-                      <p className="text-xs text-[#999] dark:text-[#666] mt-1">Deep focus mode</p>
+                  <div className="rounded-2xl border border-[#e2e8f0] dark:border-[#2a2a2a] bg-[#f8fafc] dark:bg-[#1a1a1a] shadow-sm overflow-hidden">
+                    <div className="px-5 pt-6 pb-5">
+                      <svg viewBox="0 0 80 80" className="work-icon w-14 h-14 mb-5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                          <linearGradient id="dbBar" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stopColor="var(--bolt-bright)"/>
+                            <stop offset="100%" stopColor="var(--bolt-mid)"/>
+                          </linearGradient>
+                          <linearGradient id="dbPlateL" x1="20%" y1="10%" x2="80%" y2="90%">
+                            <stop offset="0%" stopColor="var(--bolt-bright)"/>
+                            <stop offset="100%" stopColor="var(--bolt-mid)"/>
+                          </linearGradient>
+                          <linearGradient id="dbPlateR" x1="20%" y1="10%" x2="80%" y2="90%">
+                            <stop offset="0%" stopColor="var(--bolt-mid)"/>
+                            <stop offset="100%" stopColor="var(--bolt-deep)"/>
+                          </linearGradient>
+                          <linearGradient id="dbPlateSide" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stopColor="var(--bolt-deep)"/>
+                            <stop offset="100%" stopColor="var(--bolt-mid)"/>
+                          </linearGradient>
+                          <filter id="dbGlow" x="-30%" y="-30%" width="160%" height="160%">
+                            <feDropShadow dx="0" dy="4" stdDeviation="5" floodColor="var(--bolt-glow)" floodOpacity="1"/>
+                          </filter>
+                        </defs>
+                        {/* Bar */}
+                        <rect x="22" y="36" width="36" height="8" rx="4" fill="url(#dbBar)"/>
+                        {/* Left plate outer */}
+                        <rect x="8" y="24" width="14" height="32" rx="5" fill="url(#dbPlateL)" filter="url(#dbGlow)"/>
+                        {/* Left plate side depth */}
+                        <rect x="20" y="24" width="4" height="32" rx="2" fill="url(#dbPlateSide)" opacity="0.7"/>
+                        {/* Left plate gloss */}
+                        <rect x="10" y="26" width="5" height="10" rx="2" fill="white" opacity="0.2"/>
+                        {/* Right plate outer */}
+                        <rect x="58" y="24" width="14" height="32" rx="5" fill="url(#dbPlateR)" filter="url(#dbGlow)"/>
+                        {/* Right plate side depth */}
+                        <rect x="56" y="24" width="4" height="32" rx="2" fill="url(#dbPlateSide)" opacity="0.7"/>
+                        {/* Right plate gloss */}
+                        <rect x="60" y="26" width="5" height="10" rx="2" fill="white" opacity="0.2"/>
+                        {/* Bar top gloss */}
+                        <rect x="24" y="37" width="32" height="3" rx="1.5" fill="white" opacity="0.15"/>
+                      </svg>
+                      <p className="text-[10px] font-semibold text-orange-400 dark:text-orange-500 uppercase tracking-widest mb-1">Right now</p>
+                      <p className="text-sm font-bold text-[#0f172a] dark:text-white leading-snug">Working out</p>
+                      <p className="text-xs text-slate-400 dark:text-slate-500 mt-1">Gym · pushing limits</p>
                     </div>
                   </div>
                 </div>

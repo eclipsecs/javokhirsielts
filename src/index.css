@@ -15,6 +15,22 @@
   }
 }
 
+:root {
+  --bolt-bright: #0f172a;
+  --bolt-mid: #334155;
+  --bolt-deep: #64748b;
+  --bolt-gloss: rgba(255,255,255,0.6);
+  --bolt-glow: rgba(15,23,42,0.2);
+}
+
+.dark {
+  --bolt-bright: #ffffff;
+  --bolt-mid: #cbd5e1;
+  --bolt-deep: #94a3b8;
+  --bolt-gloss: rgba(255,255,255,0.35);
+  --bolt-glow: rgba(255,255,255,0.2);
+}
+
 .markdown-content {
   @apply leading-relaxed text-[#333] dark:text-[#ccc];
 }
@@ -77,11 +93,11 @@
   animation: moon-float 3s ease-in-out infinite, moon-glow 3s ease-in-out infinite;
 }
 
-@keyframes work-pulse {
-  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 4px #f59e0b88); }
-  50% { transform: scale(1.08); filter: drop-shadow(0 0 10px #f59e0bcc); }
+@keyframes sparkle-shimmer {
+  0%, 100% { transform: scale(1) translateY(0px); filter: drop-shadow(0 0 6px rgba(234,88,12,0.3)); }
+  50% { transform: scale(1.05) translateY(-3px); filter: drop-shadow(0 0 14px rgba(234,88,12,0.55)); }
 }
 
 .work-icon {
-  animation: work-pulse 1.8s ease-in-out infinite;
+  animation: sparkle-shimmer 2.4s ease-in-out infinite;
 }
