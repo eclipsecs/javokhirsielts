@@ -175,6 +175,24 @@ export default function App() {
     items: picks.filter(p => p.category === cat),
   })).filter(g => g.items.length > 0);
 
+  const getStatusWord = (s: typeof currentStatus) => {
+    switch (s.status) {
+      case 'reading': return 'Reading';
+      case 'workout': return 'Working out';
+      case 'working': return 'Working';
+      case 'rest': return 'Resting';
+    }
+  };
+
+  const getStatusSentence = (s: typeof currentStatus) => {
+    switch (s.status) {
+      case 'reading': return s.item?.title ? `Turning the pages of "${s.item.title}"` : 'Turning the pages';
+      case 'workout': return s.item?.title ? `Lifting ${s.item.title}` : 'Lifting weights';
+      case 'working': return s.workingMode === 'teaching' ? "I'm teaching" : "I'm studying";
+      case 'rest': return "I'm switched off from everywhere";
+    }
+  };
+
   const Sidebar = () => (
     <div className="hidden xl:block w-48 shrink-0">
     <aside className="sticky top-12">
@@ -488,9 +506,71 @@ export default function App() {
                           <path d="M32 24 Q26 36 30 48" stroke="var(--bolt-gloss)" strokeWidth="1.5" strokeLinecap="round" opacity="0.5" mask="url(#moonMask)"/>
                         </svg>
                       )}
-                      <p className="text-[10px] font-semibold text-[#999] dark:text-[#666] uppercase tracking-widest mb-1">Right now</p>
-                      <p className="text-sm font-bold text-[#0f172a] dark:text-white leading-snug">{currentStatus.label}</p>
-                      <p className="text-xs text-[#999] dark:text-[#666] mt-1">{currentStatus.subtitle}</p>
+                      {currentStatus.status === 'reading' && (
+                        <svg viewBox="0 0 80 80" className="work-icon w-14 h-14 mb-5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <defs>
+                            <linearGradient id="bookLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stopColor="var(--bolt-bright)"/>
+                              <stop offset="100%" stopColor="var(--bolt-mid)"/>
+                            </linearGradient>
+                            <linearGradient id="bookRight" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stopColor="var(--bolt-mid)"/>
+                              <stop offset="100%" stopColor="var(--bolt-deep)"/>
+                            </linearGradient>
+                            <linearGradient id="bookSpine" x1="0%" y1="0%" x2="100%" y2="0%">
+                              <stop offset="0%" stopColor="var(--bolt-deep)"/>
+                              <stop offset="100%" stopColor="var(--bolt-mid)"/>
+                            </linearGradient>
+                            <filter id="bookDrop" x="-30%" y="-30%" width="160%" height="160%">
+                              <feDropShadow dx="0" dy="4" stdDeviation="5" floodColor="var(--bolt-glow)" floodOpacity="1"/>
+                            </filter>
+                          </defs>
+                          <path d="M10 22 L38 30 L38 62 L10 54 Z" fill="url(#bookLeft)" filter="url(#bookDrop)"/>
+                          <path d="M42 30 L70 22 L70 54 L42 62 Z" fill="url(#bookRight)" filter="url(#bookDrop)"/>
+                          <rect x="37" y="30" width="6" height="32" rx="1" fill="url(#bookSpine)"/>
+                          <line x1="16" y1="37" x2="35" y2="40" stroke="var(--bolt-gloss)" strokeWidth="1.5" strokeLinecap="round" opacity="0.45"/>
+                          <line x1="16" y1="43" x2="35" y2="46" stroke="var(--bolt-gloss)" strokeWidth="1.5" strokeLinecap="round" opacity="0.45"/>
+                          <line x1="16" y1="49" x2="35" y2="52" stroke="var(--bolt-gloss)" strokeWidth="1.5" strokeLinecap="round" opacity="0.45"/>
+                          <line x1="45" y1="40" x2="64" y2="37" stroke="var(--bolt-gloss)" strokeWidth="1.5" strokeLinecap="round" opacity="0.3"/>
+                          <line x1="45" y1="46" x2="64" y2="43" stroke="var(--bolt-gloss)" strokeWidth="1.5" strokeLinecap="round" opacity="0.3"/>
+                          <line x1="45" y1="52" x2="64" y2="49" stroke="var(--bolt-gloss)" strokeWidth="1.5" strokeLinecap="round" opacity="0.3"/>
+                        </svg>
+                      )}
+                      <p className="text-[10px] font-semibold text-[#999] dark:text-[#666] uppercase tracking-widest mb-2">Right now</p>
+                      <p className="text-base font-bold text-[#0f172a] dark:text-white leading-snug capitalize mb-1">{getStatusWord(currentStatus)}</p>
+                      <p className="text-xs text-[#999] dark:text-[#666]">{getStatusSentence(currentStatus)}</p>
+                      {currentStatus.link && (() => {
+                        let href = currentStatus.link;
+                        let hostname = currentStatus.link;
+                        try {
+                          if (!href.startsWith('http')) href = 'https://' + href;
+                          hostname = new URL(href).hostname.replace('www.', '');
+                        } catch {}
+                        return currentStatus.linkTitle ? (
+                          <a href={href} target="_blank" rel="noopener noreferrer" className="mt-3 flex items-start gap-2.5 p-2.5 rounded-xl border border-[#e2e8f0] dark:border-[#2a2a2a] bg-white dark:bg-[#111] hover:border-[#cbd5e1] dark:hover:border-[#444] transition-colors group/link">
+                            <div className="min-w-0 flex-1">
+                              <p className="text-[11px] font-medium text-[#1a1a1a] dark:text-[#f5f5f5] leading-snug line-clamp-2 group-hover/link:text-[#000] dark:group-hover/link:text-white transition-colors">{currentStatus.linkTitle}</p>
+                              <p className="text-[10px] text-[#bbb] dark:text-[#555] mt-1">{hostname}</p>
+                            </div>
+                            <ArrowUpRight className="w-3 h-3 shrink-0 mt-0.5 text-[#bbb] dark:text-[#555] group-hover/link:text-[#999] transition-colors" />
+                          </a>
+                        ) : (
+                          <a href={href} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-1 text-[10px] text-[#999] dark:text-[#666] hover:text-[#1a1a1a] dark:hover:text-[#f5f5f5] transition-colors">
+                            <ArrowUpRight className="w-2.5 h-2.5 shrink-0" />
+                            {hostname}
+                          </a>
+                        );
+                      })()}
+                      {currentStatus.item && (
+                        currentStatus.item.url ? (
+                          <a href={currentStatus.item.url} target="_blank" rel="noopener noreferrer" className="mt-3 flex items-start gap-1.5 group/item">
+                            <span className="text-[10px] leading-snug text-[#1a1a1a] dark:text-[#f5f5f5] font-medium group-hover/item:underline underline-offset-2 line-clamp-2">{currentStatus.item.title}</span>
+                            <ArrowUpRight className="w-2.5 h-2.5 shrink-0 mt-0.5 text-[#999] dark:text-[#666]" />
+                          </a>
+                        ) : (
+                          <p className="mt-3 text-[10px] leading-snug text-[#1a1a1a] dark:text-[#f5f5f5] font-medium line-clamp-2">{currentStatus.item.title}</p>
+                        )
+                      )}
                     </div>
                   </div>
                 </div>

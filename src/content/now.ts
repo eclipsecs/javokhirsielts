@@ -1,13 +1,21 @@
-export type StatusType = 'rest' | 'workout' | 'working';
+export type StatusType = 'reading' | 'workout' | 'working' | 'rest';
+export type WorkingMode = 'studying' | 'teaching';
+
+export interface CurrentItem {
+  title: string;
+  url?: string;
+}
 
 export interface CurrentStatus {
   status: StatusType;
-  label: string;
-  subtitle: string;
+  workingMode?: WorkingMode;
+  item?: CurrentItem;
+  link?: string;
+  linkTitle?: string;
 }
 
 export const currentStatus: CurrentStatus = {
-  status: 'rest',
-  label: 'Taking rest',
-  subtitle: 'Hayit holidays, and I am off everything',
+  status: 'reading',
+  link: 'https://www.historytoday.com/reviews/multicultural-outback',
+  linkTitle: 'multicultural outback',
 };
