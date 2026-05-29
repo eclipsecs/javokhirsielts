@@ -5,6 +5,7 @@ export interface Pick {
   title: string;
   creator: string;
   timeAgo: string;
+  readTime?: string;
   cover?: string;
   url?: string;
 }
@@ -86,6 +87,14 @@ export const picks: Pick[] = [
     creator: 'Sarah Marshall & Michael Hobbes',
     timeAgo: '3 weeks ago',
     cover: 'https://i.podnews.network/r/t/150/22313-18b58aaa.jpeg',
+  },
+  {
+    category: 'article',
+    title: 'The Maid Who Restored Charles II',
+    creator: 'Anna Keay · History Today',
+    timeAgo: '3 days ago',
+    readTime: '18 min read',
+    url: 'https://www.historytoday.com/archive/feature/maid-who-restored-charles-ii',
   },
   {
     category: 'movie',
