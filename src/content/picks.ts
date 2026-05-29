@@ -40,6 +40,13 @@ export const picks: Pick[] = [
   },
   {
     category: 'podcast',
+    title: 'Tucker Carlson Network',
+    creator: 'Tucker Carlson',
+    timeAgo: '2 days ago',
+    cover: 'https://i.podnews.network/r/t/150/510581-0352bd96.jpeg',
+  },
+  {
+    category: 'podcast',
     title: 'If Books Could Kill',
     creator: 'Michael Hobbes & Peter Shamshiri',
     timeAgo: '3 days ago',
