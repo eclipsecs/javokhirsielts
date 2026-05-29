@@ -16,6 +16,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { articles, Article } from './content/articles';
+import { picks, categoryLabel, categoryIcon, PickCategory } from './content/picks';
 import { FileText, Download } from 'lucide-react';
 import sentenceMiningImage from './content/images/sentence-mining.png';
 import rtb9Image from './content/images/rtb9-img.png';
@@ -147,9 +148,57 @@ export default function App() {
     }
   };
 
+  const groupedPicks = (Object.keys(categoryLabel) as PickCategory[]).map(cat => ({
+    category: cat,
+    items: picks.filter(p => p.category === cat),
+  })).filter(g => g.items.length > 0);
+
+  const Sidebar = () => (
+    <div className="hidden xl:block w-48 shrink-0">
+    <aside className="sticky top-12">
+      <p className="text-xs font-medium text-[#999] dark:text-[#666] uppercase tracking-widest mb-6">What I've been into</p>
+      <div className="space-y-6">
+        {groupedPicks.map(({ category, items }) => (
+          <div key={category}>
+            <p className="text-[10px] uppercase tracking-widest text-[#bbb] dark:text-[#555] mb-3 flex items-center gap-1.5">
+              <span>{categoryIcon[category]}</span>
+              {categoryLabel[category]}
+            </p>
+            <div className="space-y-3">
+              {items.map((pick, i) => {
+                const content = (
+                  <div className="flex items-center gap-2.5 group">
+                    {pick.cover ? (
+                      <img src={pick.cover} alt={pick.title} className="w-8 h-8 rounded object-cover shrink-0" style={{ width: '32px', height: '32px', minWidth: '32px' }} />
+                    ) : (
+                      <div className="w-8 h-8 rounded bg-[#f0f0f0] dark:bg-[#333] shrink-0" style={{ width: '32px', height: '32px', minWidth: '32px' }} />
+                    )}
+                    <div className="min-w-0">
+                      <p className="text-xs font-medium text-[#1a1a1a] dark:text-[#f5f5f5] leading-snug truncate group-hover:text-[#555] dark:group-hover:text-[#aaa] transition-colors">{pick.title}</p>
+                      <p className="text-[11px] text-[#999] dark:text-[#666] mt-0.5 truncate">{pick.creator} · {pick.timeAgo}</p>
+                    </div>
+                  </div>
+                );
+                return (
+                  <div key={i}>
+                    {pick.url ? (
+                      <a href={pick.url} target="_blank" rel="noopener noreferrer" className="block">{content}</a>
+                    ) : content}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+    </aside>
+    </div>
+  );
+
   return (
     <div className="min-h-screen bg-[#fcfcfc] dark:bg-[#1a1a1a] text-[#1a1a1a] dark:text-[#f5f5f5] selection:bg-[#f2f2f2] dark:selection:bg-[#333] selection:text-[#000] dark:selection:text-[#fff]">
-      <div className="max-w-2xl mx-auto px-6 py-20 md:py-32">
+      <div className="max-w-2xl xl:max-w-5xl mx-auto px-6 py-20 md:py-32 xl:flex xl:gap-20 xl:items-start">
+        <div className="flex-1 min-w-0">
         <AnimatePresence mode="wait">
           {showResources ? (
             <motion.div
@@ -443,6 +492,8 @@ export default function App() {
         <footer className="mt-32 pt-12 border-t border-[#f0f0f0] dark:border-[#333] text-sm text-[#999] dark:text-[#666]">
           <p>© {new Date().getFullYear()} Javokhir</p>
         </footer>
+        </div>
+        <Sidebar />
       </div>
     </div>
   );
