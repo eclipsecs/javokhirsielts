@@ -10,13 +10,90 @@ export interface Pick {
 }
 
 export const picks: Pick[] = [
-  { category: 'music', title: 'Good Days', creator: 'SZA', timeAgo: '2 days ago', cover: 'https://upload.wikimedia.org/wikipedia/en/7/73/SZA_-_Good_Days.png' },
-  { category: 'music', title: 'Blinding Lights', creator: 'The Weeknd', timeAgo: '4 days ago', cover: 'https://i.scdn.co/image/ab67616d0000b2738863bc11d2aa12b54f5aeb36' },
-  { category: 'music', title: 'HUMBLE.', creator: 'Kendrick Lamar', timeAgo: '1 week ago', cover: 'https://upload.wikimedia.org/wikipedia/en/5/51/Kendrick_Lamar_-_Damn.png' },
-  { category: 'podcast', title: 'Huberman Lab #180', creator: 'Andrew Huberman', timeAgo: '3 days ago', cover: 'https://placehold.co/32x32/1a1a1a/ffffff?text=HL' },
-  { category: 'podcast', title: 'How I Built This', creator: 'Guy Raz', timeAgo: '1 week ago', cover: 'https://placehold.co/32x32/1a1a1a/ffffff?text=HI' },
-  { category: 'movie', title: 'Dune: Part Two', creator: 'Denis Villeneuve', timeAgo: '2 weeks ago', cover: 'https://image.tmdb.org/t/p/w92/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg' },
-  { category: 'movie', title: 'Interstellar', creator: 'Christopher Nolan', timeAgo: '1 month ago', cover: 'https://image.tmdb.org/t/p/w92/gEU2QniE6E77NI6lCU6MxlNBvIe.jpg' },
+  {
+    category: 'music',
+    title: 'HUMBLE.',
+    creator: 'Kendrick Lamar',
+    timeAgo: '2 days ago',
+    cover: 'https://upload.wikimedia.org/wikipedia/en/5/51/Kendrick_Lamar_-_Damn.png',
+  },
+  {
+    category: 'music',
+    title: 'Killshot',
+    creator: 'Eminem',
+    timeAgo: '4 days ago',
+    cover: 'https://upload.wikimedia.org/wikipedia/en/thumb/1/15/Eminem_Killshot.jpg/250px-Eminem_Killshot.jpg',
+  },
+  {
+    category: 'music',
+    title: 'The Art of Love',
+    creator: 'Lit Lords',
+    timeAgo: '1 week ago',
+    cover: 'https://lastfm.freetls.fastly.net/i/u/500x500/df30db8033c0614ce8a511da9dc69986.jpg',
+  },
+  {
+    category: 'podcast',
+    title: 'If Books Could Kill',
+    creator: 'Michael Hobbes & Peter Shamshiri',
+    timeAgo: '3 days ago',
+    cover: 'https://storage.buzzsprout.com/k9zro32pxohrzhs1mj4p8w1hemb2?.jpg',
+  },
+  {
+    category: 'podcast',
+    title: 'Lex Fridman Podcast',
+    creator: 'Lex Fridman',
+    timeAgo: '1 week ago',
+    cover: 'https://lexfridman.com/wordpress/wp-content/uploads/powerpress/artwork_3000-230.png',
+  },
+  {
+    category: 'podcast',
+    title: 'Huberman Lab',
+    creator: 'Andrew Huberman',
+    timeAgo: '2 weeks ago',
+    cover: 'https://cdn.prod.website-files.com/64416928859cbdd1716d79ce/6441c30ef12f50bc3f2449da_huberman-lab-podcast-cover.webp',
+  },
+  {
+    category: 'podcast',
+    title: 'Revolutions',
+    creator: 'Mike Duncan',
+    timeAgo: '1 week ago',
+    cover: 'https://i.podnews.network/r/t/150/13607-9c54b308.jpeg',
+  },
+  {
+    category: 'podcast',
+    title: 'The Daily',
+    creator: 'Eliana Dockterman',
+    timeAgo: '3 days ago',
+    cover: 'https://i.podnews.network/r/t/150/7141-3d5a02ad.jpeg',
+  },
+  {
+    category: 'podcast',
+    title: "You're Wrong About",
+    creator: 'Sarah Marshall & Michael Hobbes',
+    timeAgo: '3 weeks ago',
+    cover: 'https://i.podnews.network/r/t/150/22313-18b58aaa.jpeg',
+  },
+  {
+    category: 'movie',
+    title: 'The Gentlemen',
+    creator: 'Guy Ritchie',
+    timeAgo: '1 week ago',
+    cover: 'https://media.themoviedb.org/t/p/w92/jtrhTYB7xSrJxR1vusu99nvnZ1g.jpg',
+  },
+  {
+    category: 'movie',
+    title: 'All Quiet on the Western Front',
+    creator: 'Edward Berger',
+    timeAgo: '2 weeks ago',
+    cover: 'https://media.themoviedb.org/t/p/w92/2IRjbi9cADuDMKmHdLK7LaqQDKA.jpg',
+  },
+  {
+    category: 'movie',
+    title: 'Tokyo Drift',
+    creator: 'Justin Lin',
+    timeAgo: '1 month ago',
+    cover: 'https://media.themoviedb.org/t/p/w92/46xqGOwHbh2TH2avWSw3SMXph4E.jpg',
+  },
 ];
 
 export const categoryLabel: Record<PickCategory, string> = {

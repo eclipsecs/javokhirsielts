@@ -121,6 +121,26 @@ export default function App() {
   const nextArticle = currentIndex < articles.length - 1 ? articles[currentIndex + 1] : null;
   const cambridgeRef = useRef<HTMLAnchorElement>(null);
   const cambridgeAnnotationRef = useRef<any>(null);
+  const articleRefs = useRef<Record<string, HTMLSpanElement | null>>({});
+  const articleAnnotations = useRef<Record<string, any>>({});
+
+  const handleArticleMouseEnter = (slug: string) => {
+    const el = articleRefs.current[slug];
+    if (el && !articleAnnotations.current[slug]) {
+      articleAnnotations.current[slug] = annotate(el, {
+        type: 'underline',
+        color: '#343a40',
+        strokeWidth: 1.5,
+        padding: 1,
+        animationDuration: 600,
+      });
+    }
+    articleAnnotations.current[slug]?.show();
+  };
+
+  const handleArticleMouseLeave = (slug: string) => {
+    articleAnnotations.current[slug]?.hide();
+  };
 
   useEffect(() => {
     if (cambridgeRef.current) {
@@ -156,7 +176,7 @@ export default function App() {
   const Sidebar = () => (
     <div className="hidden xl:block w-48 shrink-0">
     <aside className="sticky top-12">
-      <p className="text-xs font-medium text-[#999] dark:text-[#666] uppercase tracking-widest mb-6">What I've been into</p>
+      <p className="text-xs font-medium text-[#999] dark:text-[#666] uppercase tracking-widest mb-6">On my radar</p>
       <div className="space-y-6">
         {groupedPicks.map(({ category, items }) => (
           <div key={category}>
@@ -334,7 +354,7 @@ export default function App() {
                     {darkMode ? <Sun className="w-5 h-5 text-[#f5f5f5]" /> : <Moon className="w-5 h-5 text-[#1a1a1a]" />}
                   </button>
                 </div>
-                <h1 className="text-xl font-medium mb-4">Umerov Javokhir (mitro)</h1>
+                <h1 className="text-xl font-medium mb-4">Umerov Javokhir</h1>
                 <p className="text-[#666] dark:text-[#999] leading-relaxed mb-6">
                   Hi, i'm mitro, i teach and workout. Currently teaching at{' '}
                   <a 
@@ -396,11 +416,16 @@ export default function App() {
                         transition={{ duration: 0.3, delay: index * 0.02 }}
                         className="group"
                       >
-                        <button 
+                        <button
                           onClick={() => navigate(article.slug)}
+                          onMouseEnter={() => handleArticleMouseEnter(article.slug)}
+                          onMouseLeave={() => handleArticleMouseLeave(article.slug)}
                           className="w-full flex items-baseline justify-between py-3 border-b border-transparent hover:border-[#f0f0f0] dark:hover:border-[#333] transition-all text-left cursor-pointer"
                         >
-                          <span className="text-[#1a1a1a] dark:text-[#f5f5f5] group-hover:text-[#000] dark:group-hover:text-[#fff] transition-colors flex items-center gap-2">
+                          <span
+                            ref={el => { articleRefs.current[article.slug] = el; }}
+                            className="text-[#1a1a1a] dark:text-[#f5f5f5] group-hover:text-[#000] dark:group-hover:text-[#fff] transition-colors flex items-center gap-2"
+                          >
                             {article.title}
                             {article.isNew && (
                               <span className="relative inline-block text-xs font-bold text-[#1e3a5f] dark:text-amber-200 ml-1">
