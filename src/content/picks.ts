@@ -93,7 +93,7 @@ export const picks: Pick[] = [
     title: 'Does Gravity Create Reality?',
     creator: 'New Scientist',
     readTime: '7 min read',
-    cover: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/New_Scientist_logo.svg/200px-New_Scientist_logo.svg.png',
+    cover: 'https://images.newscientist.com/wp-content/uploads/2026/05/13133140/SEI_296754903.jpg',
     url: 'https://www.newscientist.com/article/2526507-does-gravity-create-reality-a-shocking-path-to-a-theory-of-everything/',
   },
   {
@@ -101,7 +101,7 @@ export const picks: Pick[] = [
     title: 'Horror Game Gets Its Creepiness from a Quantum Computer',
     creator: 'New Scientist',
     readTime: '5 min read',
-    cover: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/New_Scientist_logo.svg/200px-New_Scientist_logo.svg.png',
+    cover: 'https://upload.wikimedia.org/wikipedia/en/thumb/b/be/New_Scientist.jpg/250px-New_Scientist.jpg',
     url: 'https://www.newscientist.com/article/2528415-horror-video-game-gets-its-creepiness-from-a-quantum-computer/',
   },
   {
@@ -109,7 +109,7 @@ export const picks: Pick[] = [
     title: "We're Becoming More Individualistic and It's Affecting Our Love Lives",
     creator: 'New Scientist',
     readTime: '6 min read',
-    cover: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/New_Scientist_logo.svg/200px-New_Scientist_logo.svg.png',
+    cover: 'https://upload.wikimedia.org/wikipedia/en/thumb/b/be/New_Scientist.jpg/250px-New_Scientist.jpg',
     url: 'https://www.newscientist.com/article/2528336-were-becoming-more-individualistic-and-its-affecting-our-love-lives/',
   },
   {
@@ -117,7 +117,7 @@ export const picks: Pick[] = [
     title: 'Has Tom Hardy Been Fired from Mobland?',
     creator: 'The Guardian',
     readTime: '4 min read',
-    cover: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/TheGuardian_Logo.svg/200px-TheGuardian_Logo.svg.png',
+    cover: 'https://variety.com/wp-content/uploads/2026/05/Mobland-Tom-Hardy.jpg?w=200&h=200&crop=1',
     url: 'https://www.theguardian.com/tv-and-radio/2026/may/29/has-tom-hardy-been-fired-from-mobland-paramount',
   },
   {
@@ -125,7 +125,7 @@ export const picks: Pick[] = [
     title: 'SNP Chief Peter Murrell Embezzled Funds – Guilty',
     creator: 'The Guardian',
     readTime: '4 min read',
-    cover: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/TheGuardian_Logo.svg/200px-TheGuardian_Logo.svg.png',
+    cover: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Peter_Murrell_2014.jpg/250px-Peter_Murrell_2014.jpg',
     url: 'https://www.theguardian.com/commentisfree/2026/may/29/snp-chief-peter-murrell-embezzled-funds-guilty',
   },
   {

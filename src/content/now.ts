@@ -9,7 +9,7 @@ export interface CurrentStatus {
 }
 
 export const currentStatus: CurrentStatus = {
-  status: 'reading',
+  status: 'rest',
   link: 'https://www.historytoday.com/reviews/multicultural-outback',
   linkTitle: 'Multicultural outback',
 };
