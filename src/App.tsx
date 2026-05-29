@@ -174,7 +174,7 @@ export default function App() {
   })).filter(g => g.items.length > 0);
 
   const Sidebar = () => (
-    <div className="hidden xl:block w-48 shrink-0">
+    <div className="hidden xl:block w-48 shrink-0 mt-[280px]">
     <aside className="sticky top-12">
       <p className="text-xs font-medium text-[#999] dark:text-[#666] uppercase tracking-widest mb-6">On my radar</p>
       <div className="space-y-6">
@@ -195,7 +195,7 @@ export default function App() {
                     )}
                     <div className="min-w-0">
                       <p className="text-xs font-medium text-[#1a1a1a] dark:text-[#f5f5f5] leading-snug truncate group-hover:text-[#555] dark:group-hover:text-[#aaa] transition-colors">{pick.title}</p>
-                      <p className="text-[11px] text-[#999] dark:text-[#666] mt-0.5 truncate">{pick.creator} · {pick.timeAgo}</p>
+                      <p className="text-[11px] text-[#999] dark:text-[#666] mt-0.5 truncate">{pick.creator}</p>
                     </div>
                   </div>
                 );
