@@ -4,7 +4,7 @@ export interface Pick {
   category: PickCategory;
   title: string;
   creator: string;
-  timeAgo: string;
+  timeAgo?: string;
   readTime?: string;
   cover?: string;
   url?: string;
@@ -92,8 +92,8 @@ export const picks: Pick[] = [
     category: 'article',
     title: 'The Maid Who Restored Charles II',
     creator: 'Anna Keay · History Today',
-    timeAgo: '3 days ago',
     readTime: '18 min read',
+    cover: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/King_Charles_II_%28J.M._Wright%29.jpg/100px-King_Charles_II_%28J.M._Wright%29.jpg',
     url: 'https://www.historytoday.com/archive/feature/maid-who-restored-charles-ii',
   },
   {
