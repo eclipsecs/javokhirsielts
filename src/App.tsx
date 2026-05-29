@@ -21,6 +21,7 @@ import { currentStatus } from './content/now';
 import { FileText, Download } from 'lucide-react';
 import sentenceMiningImage from './content/images/sentence-mining.png';
 import rtb9Image from './content/images/rtb9-img.png';
+import orangeLogo from './content/images/orange-logo.png';
 
 export interface Resource {
   id: string;
@@ -343,8 +344,8 @@ export default function App() {
             >
               <header className="mb-16">
                 <div className="mb-8 flex items-center justify-between">
-                  <div className="w-14 h-14 rounded-full overflow-hidden border border-[#f0f0f0] dark:border-[#333] bg-[#1a1a1a] dark:bg-[#f5f5f5] flex items-center justify-center">
-                    <span className="text-xl font-semibold text-[#f5f5f5] dark:text-[#1a1a1a]">Y</span>
+                  <div className="w-14 h-14 rounded-full overflow-hidden border border-[#e8e8e8] dark:border-[#2a2a2a] shrink-0">
+                    <img src={orangeLogo} alt="Javokhir" className="w-full h-full object-cover" />
                   </div>
                   <button
                     onClick={() => setDarkMode(!darkMode)}
