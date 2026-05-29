@@ -125,6 +125,30 @@ export default function App() {
   const cambridgeAnnotationRef = useRef<any>(null);
   const articleRefs = useRef<Record<string, HTMLSpanElement | null>>({});
   const articleAnnotations = useRef<Record<string, any>>({});
+  const statusLinkRef = useRef<HTMLSpanElement>(null);
+  const statusLinkAnnotationRef = useRef<any>(null);
+
+  useEffect(() => { statusLinkAnnotationRef.current = null; }, [darkMode]);
+
+  const handleStatusLinkEnter = () => {
+    if (statusLinkRef.current) {
+      if (!statusLinkAnnotationRef.current) {
+        statusLinkAnnotationRef.current = annotate(statusLinkRef.current, {
+          type: 'highlight',
+          color: darkMode ? '#475569' : '#cbd5e1',
+          strokeWidth: 0,
+          padding: 3,
+          animationDuration: 480,
+          iterations: 2,
+        });
+      }
+      statusLinkAnnotationRef.current.show();
+    }
+  };
+
+  const handleStatusLinkLeave = () => {
+    statusLinkAnnotationRef.current?.hide();
+  };
 
   const handleArticleMouseEnter = (slug: string) => {
     const el = articleRefs.current[slug];
@@ -547,8 +571,8 @@ export default function App() {
                           hostname = new URL(href).hostname.replace('www.', '');
                         } catch {}
                         return (
-                          <a href={href} target="_blank" rel="noopener noreferrer" className="mt-2 flex items-center gap-1 group/link">
-                            <span className="text-[11px] font-medium text-[#1a1a1a] dark:text-[#f5f5f5] group-hover/link:underline underline-offset-2 line-clamp-1">{currentStatus.linkTitle || hostname}</span>
+                          <a href={href} target="_blank" rel="noopener noreferrer" className="mt-2 flex items-center gap-1" onMouseEnter={handleStatusLinkEnter} onMouseLeave={handleStatusLinkLeave}>
+                            <span ref={statusLinkRef} className="text-[11px] font-medium text-[#1a1a1a] dark:text-[#f5f5f5] line-clamp-1">{currentStatus.linkTitle || hostname}</span>
                             <ArrowUpRight className="w-2.5 h-2.5 shrink-0 text-[#999] dark:text-[#666]" />
                           </a>
                         );
