@@ -26,6 +26,13 @@ export const picks: Pick[] = [
   },
   {
     category: 'music',
+    title: 'If I Lose Myself',
+    creator: 'OneRepublic',
+    timeAgo: '1 day ago',
+    cover: 'https://upload.wikimedia.org/wikipedia/en/thumb/5/52/OneRepublic_-_Native.jpg/250px-OneRepublic_-_Native.jpg',
+  },
+  {
+    category: 'music',
     title: 'The Art of Love',
     creator: 'Lit Lords',
     timeAgo: '1 week ago',

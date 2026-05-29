@@ -7,7 +7,7 @@ export interface CurrentStatus {
 }
 
 export const currentStatus: CurrentStatus = {
-  status: 'working',
+  status: 'rest',
   label: 'Taking rest',
-  subtitle: 'Recharging for tomorrow',
+  subtitle: 'Hayit holidays, and I am off everything',
 };
