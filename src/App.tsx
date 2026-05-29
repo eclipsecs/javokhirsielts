@@ -343,8 +343,8 @@ export default function App() {
             >
               <header className="mb-16">
                 <div className="mb-8 flex items-center justify-between">
-                  <div className="w-10 h-10 rounded-full overflow-hidden border border-[#f0f0f0] dark:border-[#333] bg-[#1a1a1a] dark:bg-[#f5f5f5] flex items-center justify-center">
-                    <span className="text-lg font-semibold text-[#f5f5f5] dark:text-[#1a1a1a]">Y</span>
+                  <div className="w-14 h-14 rounded-full overflow-hidden border border-[#f0f0f0] dark:border-[#333] bg-[#1a1a1a] dark:bg-[#f5f5f5] flex items-center justify-center">
+                    <span className="text-xl font-semibold text-[#f5f5f5] dark:text-[#1a1a1a]">Y</span>
                   </div>
                   <button
                     onClick={() => setDarkMode(!darkMode)}
@@ -356,13 +356,16 @@ export default function App() {
                 </div>
                 <div className="xl:flex xl:gap-20 xl:items-start">
                 <div className="flex-1 min-w-0">
-                <h1 className="text-xl font-medium mb-4">Umerov Javokhir</h1>
+                <h1 className="text-3xl font-semibold tracking-tight mb-1">Umerov Javokhir</h1>
+                <p className="font-mono text-xs text-[#bbb] dark:text-[#555] mb-5 tracking-wide">
+                  IELTS Teacher · Gymrat · Samarkand
+                </p>
                 <p className="text-[#666] dark:text-[#999] leading-relaxed mb-6">
                   Hi, i'm mitro, i teach and workout. Currently teaching at{' '}
-                  <a 
+                  <a
                     ref={cambridgeRef}
-                    href="https://cambridgeonline.uz/" 
-                    target="_blank" 
+                    href="https://cambridgeonline.uz/"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="text-[#1a1a1a] dark:text-[#f5f5f5] transition-colors cursor-pointer"
                     onMouseEnter={handleCambridgeMouseEnter}
