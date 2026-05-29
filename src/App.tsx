@@ -361,13 +361,13 @@ export default function App() {
                   IELTS Teacher · Gymrat · Samarkand
                 </p>
                 <p className="text-[#666] dark:text-[#999] leading-relaxed mb-6">
-                  Hi, i'm mitro, i teach and workout. Currently teaching at{' '}
+                  Hi, I'm Javokhir, I teach and workout. Currently teaching at{' '}
                   <a
                     ref={cambridgeRef}
                     href="https://cambridgeonline.uz/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-0.5 font-medium italic text-[#1a1a1a] dark:text-[#f5f5f5] group/link transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-0.5 font-semibold text-[#1a1a1a] dark:text-[#f5f5f5] group/link transition-colors cursor-pointer"
                     onMouseEnter={handleCambridgeMouseEnter}
                     onMouseLeave={handleCambridgeMouseLeave}
                   >
