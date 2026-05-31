@@ -19,6 +19,7 @@ import { articles } from './content/articles';
 import { picks, categoryLabel, categoryIcon, PickCategory } from './content/picks';
 import { currentStatus } from './content/now';
 import { activityData } from './content/activity';
+import type { ActivityEntry } from './content/activity';
 import sentenceMiningImage from './content/images/sentence-mining.png';
 import rtb9Image from './content/images/rtb9-img.png';
 import orangeLogo from './content/images/orange-logo.png';
@@ -85,7 +86,7 @@ function getLevel(count: number) {
   return 4;
 }
 
-function ContributionGraph() {
+function ContributionGraph({ selectedDate, onDayClick }: { selectedDate?: string; onDayClick?: (date: string) => void }) {
   const [tooltip, setTooltip] = useState<{ date: string; count: number; x: number; y: number } | null>(null);
 
   const grid = useMemo(() => {
@@ -104,9 +105,10 @@ function ContributionGraph() {
       for (let d = 0; d < 7; d++) {
         const dateStr = cur.toISOString().split('T')[0];
         const month = cur.getMonth();
+        const entry = activityData[dateStr];
         week.push({
           date: dateStr,
-          count: activityData[dateStr] || 0,
+          count: entry ? entry.logs.length : 0,
           future: cur > today,
           ...(d === 0 && month !== prevMonth ? { monthLabel: MONTHS[month] } : {}),
         });
@@ -137,7 +139,12 @@ function ContributionGraph() {
               <div
                 key={di}
                 style={{ width: `${CELL}px`, height: `${CELL}px` }}
-                className={`rounded-sm cursor-default transition-opacity ${day.future ? 'opacity-0 pointer-events-none' : LEVEL_CLASSES[getLevel(day.count)]}`}
+                className={`rounded-sm transition-all ${
+                  day.future
+                    ? 'opacity-0 pointer-events-none'
+                    : `${LEVEL_CLASSES[getLevel(day.count)]} ${onDayClick && day.count > 0 ? 'cursor-pointer' : 'cursor-default'} ${selectedDate === day.date ? 'ring-2 ring-offset-1 ring-[#1a1a1a] dark:ring-[#f5f5f5]' : ''}`
+                }`}
+                onClick={() => !day.future && day.count > 0 && onDayClick?.(day.date)}
                 onMouseEnter={e => {
                   if (day.future) return;
                   const r = (e.target as HTMLElement).getBoundingClientRect();
@@ -163,7 +170,7 @@ function ContributionGraph() {
           className="fixed z-50 px-2 py-1 text-[10px] bg-[#1a1a1a] dark:bg-[#f5f5f5] text-white dark:text-[#1a1a1a] rounded-md whitespace-nowrap pointer-events-none shadow-md"
           style={{ left: tooltip.x, top: tooltip.y - 32, transform: 'translateX(-50%)' }}
         >
-          {tooltip.count > 0 ? `${tooltip.count} ${tooltip.count === 1 ? 'activity' : 'activities'}` : 'No activity'}
+          {tooltip.count > 0 ? `${tooltip.count} ${tooltip.count === 1 ? 'entry' : 'entries'}` : 'No entries'}
           {' · '}
           {new Date(tooltip.date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
         </div>
@@ -176,6 +183,9 @@ export default function App() {
   const [currentSlug, setCurrentSlug] = useState<string | null>(null);
   const [showResources, setShowResources] = useState<boolean>(false);
   const [showActivities, setShowActivities] = useState<boolean>(false);
+  const [selectedActivityDate, setSelectedActivityDate] = useState<string | undefined>(
+    () => Object.keys(activityData).sort().reverse()[0]
+  );
   const [darkMode, setDarkMode] = useState<boolean>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('darkMode');
@@ -574,9 +584,36 @@ export default function App() {
                 </p>
               </header>
 
-              <section>
-                <ContributionGraph />
+              <section className="mb-12">
+                <ContributionGraph
+                  selectedDate={selectedActivityDate}
+                  onDayClick={setSelectedActivityDate}
+                />
               </section>
+
+              {selectedActivityDate && activityData[selectedActivityDate] && (
+                <section>
+                  <p className="text-xs font-medium text-[#999] dark:text-[#666] uppercase tracking-wider mb-5">
+                    {new Date(selectedActivityDate + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
+                  </p>
+                  <div className="space-y-4">
+                    {(activityData[selectedActivityDate] as ActivityEntry).logs.map((log, i) => (
+                      <div key={i} className="flex items-start gap-3">
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#cbd5e1] dark:bg-[#475569] shrink-0" />
+                        <div>
+                          <p className="text-sm text-[#1a1a1a] dark:text-[#f5f5f5] leading-relaxed">{log.text}</p>
+                          {log.link && (
+                            <a href={log.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs text-[#999] dark:text-[#666] hover:text-[#1a1a1a] dark:hover:text-[#f5f5f5] transition-colors mt-0.5">
+                              {(() => { try { return new URL(log.link).hostname.replace('www.', ''); } catch { return log.link; } })()}
+                              <ArrowUpRight className="w-3 h-3" />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              )}
             </motion.div>
           ) : !currentSlug ? (
             <motion.div
