@@ -1,59 +1,38 @@
-export interface ActivityLog {
-  text: string;
-  link?: string;
-}
-
 export interface ActivityEntry {
-  logs: ActivityLog[];
+  content: string;
+  count?: number;
 }
 
-// Add entries for each day. The number of logs drives the graph intensity.
 export const activityData: Record<string, ActivityEntry> = {
-  '2026-05-31': {
-    logs: [
-      { text: 'Taught IELTS Writing Task 2 to advanced group' },
-      { text: 'Completed morning workout — 45 min' },
-    ],
-  },
-  '2026-05-30': {
-    logs: [
-      { text: 'Reviewed student essays and left feedback' },
-    ],
-  },
-  '2026-05-29': {
-    logs: [
-      { text: 'Prepared new Speaking Part 2 material' },
-      { text: 'Read about multicultural outback', link: 'https://www.historytoday.com/reviews/multicultural-outback' },
-      { text: 'Evening run — 5km' },
-    ],
-  },
-  '2026-05-28': {
-    logs: [
-      { text: 'Taught morning IELTS class' },
-      { text: 'Updated course notes' },
-    ],
-  },
-  '2026-05-27': {
-    logs: [
-      { text: 'Rest day — light reading' },
-    ],
-  },
-  '2026-05-26': {
-    logs: [
-      { text: 'Taught two back-to-back sessions' },
-      { text: 'Gym — upper body' },
-    ],
-  },
-  '2026-05-25': {
-    logs: [
-      { text: 'Marked practice tests' },
-    ],
-  },
-  '2026-05-23': {
-    logs: [
-      { text: 'Taught Writing Task 1 — charts and graphs' },
-      { text: 'Read gravity article', link: 'https://www.newscientist.com/article/2526507-does-gravity-create-reality-a-shocking-path-to-a-theory-of-everything/' },
-      { text: 'Workout — legs' },
-    ],
-  },
+  '2026-05-01': { count: 2, content: `Write what you did on May 1st here.` },
+  '2026-05-02': { count: 3, content: `Write what you did on May 2nd here.` },
+  '2026-05-03': { count: 1, content: `Write what you did on May 3rd here.` },
+  '2026-05-04': { count: 1, content: `Write what you did on May 4th here.` },
+  '2026-05-05': { count: 1, content: `Write what you did on May 5th here.` },
+  '2026-05-06': { count: 1, content: `Write what you did on May 6th here.` },
+  '2026-05-07': { count: 1, content: `Write what you did on May 7th here.` },
+  '2026-05-08': { count: 1, content: `Write what you did on May 8th here.` },
+  '2026-05-09': { count: 1, content: `Write what you did on May 9th here.` },
+  '2026-05-10': { count: 1, content: `Write what you did on May 10th here.` },
+  '2026-05-11': { count: 1, content: `Write what you did on May 11th here.` },
+  '2026-05-12': { count: 1, content: `Write what you did on May 12th here.` },
+  '2026-05-13': { count: 1, content: `Write what you did on May 13th here.` },
+  '2026-05-14': { count: 1, content: `Write what you did on May 14th here.` },
+  '2026-05-15': { count: 1, content: `Write what you did on May 15th here.` },
+  '2026-05-16': { count: 1, content: `Write what you did on May 16th here.` },
+  '2026-05-17': { count: 1, content: `Write what you did on May 17th here.` },
+  '2026-05-18': { count: 1, content: `Write what you did on May 18th here.` },
+  '2026-05-19': { count: 1, content: `Write what you did on May 19th here.` },
+  '2026-05-20': { count: 1, content: `Write what you did on May 20th here.` },
+  '2026-05-21': { count: 1, content: `Write what you did on May 21st here.` },
+  '2026-05-22': { count: 1, content: `Write what you did on May 22nd here.` },
+  '2026-05-23': { count: 1, content: `Write what you did on May 23rd here.` },
+  '2026-05-24': { count: 1, content: `Write what you did on May 24th here.` },
+  '2026-05-25': { count: 1, content: `Write what you did on May 25th here.` },
+  '2026-05-26': { count: 1, content: `Write what you did on May 26th here.` },
+  '2026-05-27': { count: 1, content: `Write what you did on May 27th here.` },
+  '2026-05-28': { count: 1, content: `Write what you did on May 28th here.` },
+  '2026-05-29': { count: 1, content: `Write what you did on May 29th here.` },
+  '2026-05-30': { count: 1, content: `Write what you did on May 30th here.` },
+  '2026-05-31': { count: 1, content: `Write what you did on May 31st here.` },
 };
