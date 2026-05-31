@@ -10,7 +10,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowUpRight, ArrowLeft, Moon, Sun, FileText, Download } from 'lucide-react';
+import { ArrowUpRight, ArrowLeft, Moon, Sun, FileText, Download, ChevronDown, Check } from 'lucide-react';
 import { annotate } from 'rough-notation';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -193,6 +193,26 @@ export default function App() {
     }
   };
 
+  const [articleFilter, setArticleFilter] = useState<string>('all');
+  const [articleDropdownOpen, setArticleDropdownOpen] = useState(false);
+  const articleDropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (articleDropdownRef.current && !articleDropdownRef.current.contains(e.target as Node)) {
+        setArticleDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
+
+  const getArticleSource = (creator: string) => creator.split(' · ').pop()!;
+
+  const articleSources = ['all', ...Array.from(new Set(
+    picks.filter(p => p.category === 'article').map(p => getArticleSource(p.creator))
+  ))];
+
   const groupedPicks = (Object.keys(categoryLabel) as PickCategory[]).map(cat => ({
     category: cat,
     items: picks.filter(p => p.category === cat),
@@ -221,14 +241,45 @@ export default function App() {
     <aside className="sticky top-12">
       <p className="text-xs font-medium text-[#999] dark:text-[#666] uppercase tracking-widest mb-6">On my radar</p>
       <div className="space-y-6">
-        {groupedPicks.map(({ category, items }) => (
+        {groupedPicks.map(({ category, items }) => {
+          const filteredItems = category === 'article' && articleFilter !== 'all'
+            ? items.filter(p => getArticleSource(p.creator) === articleFilter)
+            : items;
+          return (
           <div key={category}>
             <p className="text-[10px] font-semibold uppercase tracking-widest text-[#999] dark:text-[#555] mb-3 flex items-center gap-1.5">
               <span>{categoryIcon[category]}</span>
               {categoryLabel[category]}
             </p>
+            {category === 'article' && (
+              <div className="relative mb-3" ref={articleDropdownRef}>
+                <button
+                  onClick={() => setArticleDropdownOpen(o => !o)}
+                  className="flex items-center gap-1.5 text-[10px] font-medium text-[#666] dark:text-[#999] hover:text-[#1a1a1a] dark:hover:text-[#f5f5f5] transition-colors cursor-pointer group"
+                >
+                  <span>{articleFilter === 'all' ? 'All sources' : articleFilter}</span>
+                  <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${articleDropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
+                {articleDropdownOpen && (
+                  <div className="absolute left-0 top-full mt-1.5 z-50 min-w-[140px] bg-white dark:bg-[#222] border border-[#e8e8e8] dark:border-[#333] rounded-xl shadow-lg overflow-hidden py-1">
+                    {articleSources.map(source => (
+                      <button
+                        key={source}
+                        onClick={() => { setArticleFilter(source); setArticleDropdownOpen(false); }}
+                        className="w-full flex items-center justify-between gap-3 px-3 py-1.5 text-left text-[11px] font-medium hover:bg-[#f5f5f5] dark:hover:bg-[#2a2a2a] transition-colors cursor-pointer"
+                      >
+                        <span className={articleFilter === source ? 'text-[#1a1a1a] dark:text-[#f5f5f5]' : 'text-[#999] dark:text-[#666]'}>
+                          {source === 'all' ? 'All sources' : source}
+                        </span>
+                        {articleFilter === source && <Check className="w-3 h-3 text-[#1a1a1a] dark:text-[#f5f5f5] shrink-0" />}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
             <div className="space-y-3">
-              {items.map((pick, i) => {
+              {filteredItems.map((pick, i) => {
                 const content = (
                   <div className="flex items-center gap-2.5 group">
                     {pick.cover ? (
@@ -253,7 +304,8 @@ export default function App() {
               })}
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
     </aside>
     </div>
@@ -625,14 +677,45 @@ export default function App() {
                 <section className="xl:hidden mt-16">
                   <h2 className="text-sm font-medium text-[#999] dark:text-[#666] uppercase tracking-wider mb-8">On my radar</h2>
                   <div className="space-y-8">
-                    {groupedPicks.map(({ category, items }) => (
+                    {groupedPicks.map(({ category, items }) => {
+                      const filteredItems = category === 'article' && articleFilter !== 'all'
+                        ? items.filter(p => getArticleSource(p.creator) === articleFilter)
+                        : items;
+                      return (
                       <div key={category}>
                         <p className="text-xs font-semibold uppercase tracking-widest text-[#999] dark:text-[#555] mb-4 flex items-center gap-2">
                           <span>{categoryIcon[category]}</span>
                           {categoryLabel[category]}
                         </p>
+                        {category === 'article' && (
+                          <div className="relative mb-4" ref={articleDropdownRef}>
+                            <button
+                              onClick={() => setArticleDropdownOpen(o => !o)}
+                              className="flex items-center gap-1.5 text-xs font-medium text-[#666] dark:text-[#999] hover:text-[#1a1a1a] dark:hover:text-[#f5f5f5] transition-colors cursor-pointer"
+                            >
+                              <span>{articleFilter === 'all' ? 'All sources' : articleFilter}</span>
+                              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${articleDropdownOpen ? 'rotate-180' : ''}`} />
+                            </button>
+                            {articleDropdownOpen && (
+                              <div className="absolute left-0 top-full mt-1.5 z-50 min-w-[160px] bg-white dark:bg-[#222] border border-[#e8e8e8] dark:border-[#333] rounded-xl shadow-lg overflow-hidden py-1">
+                                {articleSources.map(source => (
+                                  <button
+                                    key={source}
+                                    onClick={() => { setArticleFilter(source); setArticleDropdownOpen(false); }}
+                                    className="w-full flex items-center justify-between gap-3 px-3 py-2 text-left text-xs font-medium hover:bg-[#f5f5f5] dark:hover:bg-[#2a2a2a] transition-colors cursor-pointer"
+                                  >
+                                    <span className={articleFilter === source ? 'text-[#1a1a1a] dark:text-[#f5f5f5]' : 'text-[#999] dark:text-[#666]'}>
+                                      {source === 'all' ? 'All sources' : source}
+                                    </span>
+                                    {articleFilter === source && <Check className="w-3.5 h-3.5 text-[#1a1a1a] dark:text-[#f5f5f5] shrink-0" />}
+                                  </button>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        )}
                         <div className="space-y-3">
-                          {items.map((pick, i) => {
+                          {filteredItems.map((pick, i) => {
                             const content = (
                               <div className="flex items-center gap-3 group">
                                 {pick.cover ? (
@@ -657,7 +740,8 @@ export default function App() {
                           })}
                         </div>
                       </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </section>
               </main>
