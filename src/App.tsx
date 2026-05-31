@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowUpRight, ArrowLeft, Moon, Sun, FileText, Download, ChevronDown, Check } from 'lucide-react';
 import { annotate } from 'rough-notation';
@@ -18,6 +18,7 @@ import rehypeRaw from 'rehype-raw';
 import { articles } from './content/articles';
 import { picks, categoryLabel, categoryIcon, PickCategory } from './content/picks';
 import { currentStatus } from './content/now';
+import { activityData } from './content/activity';
 import sentenceMiningImage from './content/images/sentence-mining.png';
 import rtb9Image from './content/images/rtb9-img.png';
 import orangeLogo from './content/images/orange-logo.png';
@@ -62,9 +63,119 @@ export const resources: Resource[] = [
   }
 ];
 
+const WEEKS = 53;
+const CELL = 11;
+const GAP = 2;
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const DAY_LABELS = ['','Mon','','Wed','','Fri',''];
+
+const LEVEL_CLASSES = [
+  'bg-[#ebedf0] dark:bg-[#2d333b]',
+  'bg-[#9be9a8] dark:bg-[#0e4429]',
+  'bg-[#40c463] dark:bg-[#006d32]',
+  'bg-[#30a14e] dark:bg-[#26a641]',
+  'bg-[#216e39] dark:bg-[#39d353]',
+];
+
+function getLevel(count: number) {
+  if (count === 0) return 0;
+  if (count === 1) return 1;
+  if (count === 2) return 2;
+  if (count <= 4) return 3;
+  return 4;
+}
+
+function ContributionGraph() {
+  const [tooltip, setTooltip] = useState<{ date: string; count: number; x: number; y: number } | null>(null);
+
+  const grid = useMemo(() => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const start = new Date(today);
+    start.setDate(start.getDate() - (WEEKS * 7 - 1));
+    start.setDate(start.getDate() - start.getDay());
+
+    const weeks: { date: string; count: number; future: boolean; monthLabel?: string }[][] = [];
+    const cur = new Date(start);
+    let prevMonth = -1;
+
+    for (let w = 0; w < WEEKS; w++) {
+      const week: typeof weeks[0] = [];
+      for (let d = 0; d < 7; d++) {
+        const dateStr = cur.toISOString().split('T')[0];
+        const month = cur.getMonth();
+        week.push({
+          date: dateStr,
+          count: activityData[dateStr] || 0,
+          future: cur > today,
+          ...(d === 0 && month !== prevMonth ? { monthLabel: MONTHS[month] } : {}),
+        });
+        if (d === 0 && month !== prevMonth) prevMonth = month;
+        cur.setDate(cur.getDate() + 1);
+      }
+      weeks.push(week);
+    }
+    return weeks;
+  }, []);
+
+  return (
+    <div className="relative">
+      <div className="flex gap-[2px] overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
+        <div className="flex flex-col gap-[2px] mr-1.5 shrink-0 pt-[16px]">
+          {DAY_LABELS.map((label, i) => (
+            <div key={i} className="text-[9px] text-[#bbb] dark:text-[#555] text-right pr-0.5" style={{ height: `${CELL}px`, lineHeight: `${CELL}px` }}>
+              {label}
+            </div>
+          ))}
+        </div>
+        {grid.map((week, wi) => (
+          <div key={wi} className="flex flex-col gap-[2px] shrink-0">
+            <div className="text-[9px] text-[#bbb] dark:text-[#555] h-[14px] leading-none whitespace-nowrap">
+              {week[0].monthLabel ?? ''}
+            </div>
+            {week.map((day, di) => (
+              <div
+                key={di}
+                style={{ width: `${CELL}px`, height: `${CELL}px` }}
+                className={`rounded-sm cursor-default transition-opacity ${day.future ? 'opacity-0 pointer-events-none' : LEVEL_CLASSES[getLevel(day.count)]}`}
+                onMouseEnter={e => {
+                  if (day.future) return;
+                  const r = (e.target as HTMLElement).getBoundingClientRect();
+                  setTooltip({ date: day.date, count: day.count, x: r.left + r.width / 2, y: r.top });
+                }}
+                onMouseLeave={() => setTooltip(null)}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+
+      <div className="flex items-center gap-1 mt-2 justify-end">
+        <span className="text-[9px] text-[#bbb] dark:text-[#555]">Less</span>
+        {LEVEL_CLASSES.map((cls, i) => (
+          <div key={i} className={`rounded-sm shrink-0 ${cls}`} style={{ width: `${CELL}px`, height: `${CELL}px` }} />
+        ))}
+        <span className="text-[9px] text-[#bbb] dark:text-[#555]">More</span>
+      </div>
+
+      {tooltip && (
+        <div
+          className="fixed z-50 px-2 py-1 text-[10px] bg-[#1a1a1a] dark:bg-[#f5f5f5] text-white dark:text-[#1a1a1a] rounded-md whitespace-nowrap pointer-events-none shadow-md"
+          style={{ left: tooltip.x, top: tooltip.y - 32, transform: 'translateX(-50%)' }}
+        >
+          {tooltip.count > 0 ? `${tooltip.count} ${tooltip.count === 1 ? 'activity' : 'activities'}` : 'No activity'}
+          {' · '}
+          {new Date(tooltip.date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function App() {
   const [currentSlug, setCurrentSlug] = useState<string | null>(null);
   const [showResources, setShowResources] = useState<boolean>(false);
+  const [showActivities, setShowActivities] = useState<boolean>(false);
   const [darkMode, setDarkMode] = useState<boolean>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('darkMode');
@@ -95,6 +206,8 @@ export default function App() {
     const initialPath = window.location.pathname.replace('/', '');
     if (initialPath === 'resources') {
       setShowResources(true);
+    } else if (initialPath === 'activities') {
+      setShowActivities(true);
     } else if (initialPath && articles.find(a => a.slug === initialPath)) {
       setCurrentSlug(initialPath);
     }
@@ -104,6 +217,7 @@ export default function App() {
 
   const navigate = (slug: string | null) => {
     setShowResources(false);
+    setShowActivities(false);
     setCurrentSlug(slug);
     const url = slug ? `/${slug}` : '/';
     window.history.pushState({}, '', url);
@@ -112,8 +226,17 @@ export default function App() {
 
   const navigateToResources = () => {
     setCurrentSlug(null);
+    setShowActivities(false);
     setShowResources(true);
     window.history.pushState({}, '', '/resources');
+    window.scrollTo(0, 0);
+  };
+
+  const navigateToActivities = () => {
+    setCurrentSlug(null);
+    setShowResources(false);
+    setShowActivities(true);
+    window.history.pushState({}, '', '/activities');
     window.scrollTo(0, 0);
   };
 
@@ -428,6 +551,33 @@ export default function App() {
                 </div>
               </section>
             </motion.div>
+          ) : showActivities ? (
+            <motion.div
+              key="activities"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.4 }}
+            >
+              <button
+                onClick={() => navigate(null)}
+                className="flex items-center gap-2 text-sm text-[#999] dark:text-[#666] hover:text-[#1a1a1a] dark:hover:text-[#fff] transition-colors mb-12 group cursor-pointer"
+              >
+                <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+                Back to home
+              </button>
+
+              <header className="mb-12">
+                <h1 className="text-3xl font-medium tracking-tight mb-4">My Activities</h1>
+                <p className="text-[#666] dark:text-[#999] leading-relaxed">
+                  A log of my daily activity — teaching, writing, working out, and everything in between.
+                </p>
+              </header>
+
+              <section>
+                <ContributionGraph />
+              </section>
+            </motion.div>
           ) : !currentSlug ? (
             <motion.div
               key="home"
@@ -472,11 +622,17 @@ export default function App() {
                 </p>
 
                 <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-                  <button 
+                  <button
                     onClick={navigateToResources}
                     className="flex items-center gap-1 text-[#666] dark:text-[#999] hover:text-[#1a1a1a] dark:hover:text-[#fff] transition-colors cursor-pointer"
                   >
                     Resources <ArrowUpRight className="w-3 h-3" />
+                  </button>
+                  <button
+                    onClick={navigateToActivities}
+                    className="flex items-center gap-1 text-[#666] dark:text-[#999] hover:text-[#1a1a1a] dark:hover:text-[#fff] transition-colors cursor-pointer"
+                  >
+                    My Activities <ArrowUpRight className="w-3 h-3" />
                   </button>
                   <a 
                     href="https://t.me/javokhirsielts" 
