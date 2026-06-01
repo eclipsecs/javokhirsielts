@@ -6,7 +6,7 @@ export interface ActivityEntry {
 export const activityData: Record<string, ActivityEntry> = {
   '2026-05-01': { count: 2, content: `Write what you did on May 1st here.` },
   '2026-05-02': { count: 3, content: `Write what you did on May 2nd here.` },
-  '2026-05-03': { count: 1, content: `Write what you did on May 3rd here.` },
+  '2026-05-03': { count: 10, content: `A hefty work in disguise.` },
   '2026-05-04': { count: 1, content: `Write what you did on May 4th here.` },
   '2026-05-05': { count: 1, content: `Write what you did on May 5th here.` },
   '2026-05-06': { count: 1, content: `Write what you did on May 6th here.` },
