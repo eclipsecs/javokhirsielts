@@ -8,7 +8,7 @@ export const activityData: Record<string, ActivityEntry> = {
   '2026-05-02': { count: 3, content: `Write what you did on May 2nd here.` },
   '2026-05-03': { count: 10, content: `A hefty work in disguise.` },
   '2026-05-04': { count: 10, content: `Shit, this day was puzzling.` },
-  '2026-05-05': { count: 1, content: `Write what you did on May 5th here.` },
+  '2026-05-05': { count: 1, content: `Another day, another dollar.` },
   '2026-05-06': { count: 1, content: `Write what you did on May 6th here.` },
   '2026-05-07': { count: 1, content: `Write what you did on May 7th here.` },
   '2026-05-08': { count: 1, content: `Write what you did on May 8th here.` },
