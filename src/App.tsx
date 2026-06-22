@@ -15,6 +15,7 @@ import { annotate } from 'rough-notation';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
+import { Coffee } from 'lucide-react';
 import { articles } from './content/articles';
 import { picks, categoryLabel, categoryIcon, PickCategory } from './content/picks';
 import { currentStatus } from './content/now';
@@ -683,6 +684,14 @@ export default function App() {
                     className="flex items-center gap-1 text-[#666] dark:text-[#999] hover:text-[#1a1a1a] dark:hover:text-[#fff] transition-colors"
                   >
                     Register for course <ArrowUpRight className="w-3 h-3" />
+                  </a>
+                  <a 
+                    href="" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-[#666] dark:text-[#999] hover:text-[#1a1a1a] dark:hover:text-[#fff] transition-colors"
+                  >
+                    Shop <Coffee className="w-3 h-3" />
                   </a>
                 </div>
                 </div>
