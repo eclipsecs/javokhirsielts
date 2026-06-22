@@ -10,12 +10,8 @@
 
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowUpRight, ArrowLeft, Moon, Sun, FileText, Download, ChevronDown, Check } from 'lucide-react';
+import { Coffee, ArrowUpRight, ArrowLeft, Moon, Sun, FileText, Download, ChevronDown, Check, BookOpen, Activity, Send, Youtube, PenLine, Store } from 'lucide-react';
 import { annotate } from 'rough-notation';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import rehypeRaw from 'rehype-raw';
-import { Coffee } from 'lucide-react';
 import { articles } from './content/articles';
 import { picks, categoryLabel, categoryIcon, PickCategory } from './content/picks';
 import { currentStatus } from './content/now';
@@ -212,7 +208,7 @@ export default function App() {
       setCurrentSlug(path || null);
     };
     window.addEventListener('popstate', handlePopState);
-    
+
     // Initial load
     const initialPath = window.location.pathname.replace('/', '');
     if (initialPath === 'resources') {
@@ -457,7 +453,7 @@ export default function App() {
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.4 }}
             >
-              <button 
+              <button
                 onClick={() => navigate(null)}
                 className="flex items-center gap-2 text-sm text-[#999] dark:text-[#666] hover:text-[#1a1a1a] dark:hover:text-[#fff] transition-colors mb-12 group cursor-pointer"
               >
@@ -476,7 +472,7 @@ export default function App() {
                 <h2 className="text-sm font-medium text-[#999] dark:text-[#666] uppercase tracking-wider mb-6">Arsenal of Speaking</h2>
                 <div className="grid gap-4">
                   {resources.filter(r => r.category === 'arsenal-of-speaking').map((resource) => (
-                    <a 
+                    <a
                       key={resource.id}
                       href={resource.filePath}
                       download
@@ -506,7 +502,7 @@ export default function App() {
                 <h2 className="text-sm font-medium text-[#999] dark:text-[#666] uppercase tracking-wider mb-6">Personal Essays</h2>
                 <div className="grid gap-4">
                   {resources.filter(r => r.category === 'personal-essays').map((resource) => (
-                    <a 
+                    <a
                       key={resource.id}
                       href={resource.filePath}
                       download
@@ -536,7 +532,7 @@ export default function App() {
                 <h2 className="text-sm font-medium text-[#999] dark:text-[#666] uppercase tracking-wider mb-6">Arsenal of Writing</h2>
                 <div className="grid gap-4">
                   {resources.filter(r => r.category === 'arsenal-of-writing').map((resource) => (
-                    <a 
+                    <a
                       key={resource.id}
                       href={resource.filePath}
                       download
@@ -648,50 +644,48 @@ export default function App() {
                   </a>.
                 </p>
 
-                <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+                <div className="flex flex-wrap gap-x-2.5 gap-y-2 text-sm">
                   <button
                     onClick={navigateToResources}
-                    className="flex items-center gap-1 text-[#666] dark:text-[#999] hover:text-[#1a1a1a] dark:hover:text-[#fff] transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#3b82f6]/15 hover:bg-[#3b82f6]/25 text-[#1a1a1a] dark:text-[#f5f5f5] transition-colors cursor-pointer"
                   >
-                    Resources <ArrowUpRight className="w-3 h-3" />
+                    <FileText className="w-3.5 h-3.5 text-[#3b82f6]" />
+                    Resources
                   </button>
                   <button
                     onClick={navigateToActivities}
-                    className="flex items-center gap-1 text-[#666] dark:text-[#999] hover:text-[#1a1a1a] dark:hover:text-[#fff] transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#10b981]/15 hover:bg-[#10b981]/25 text-[#1a1a1a] dark:text-[#f5f5f5] transition-colors cursor-pointer"
                   >
-                    My Activities <ArrowUpRight className="w-3 h-3" />
+                    <Activity className="w-3.5 h-3.5 text-[#10b981]" />
+                    My Activities
                   </button>
-                  <a 
-                    href="https://t.me/javokhirsielts" 
-                    target="_blank" 
+                  <a
+                    href="https://t.me/javokhirsielts"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-[#666] dark:text-[#999] hover:text-[#1a1a1a] dark:hover:text-[#fff] transition-colors"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#0088cc]/15 hover:bg-[#0088cc]/25 text-[#1a1a1a] dark:text-[#f5f5f5] transition-colors"
                   >
-                    Telegram <ArrowUpRight className="w-3 h-3" />
+                    <Send className="w-3.5 h-3.5 text-[#0088cc]" />
+                    Telegram
                   </a>
-                  <a 
-                    href="https://www.youtube.com/@javokhirsielts" 
-                    target="_blank" 
+                  <a
+                    href="https://www.youtube.com/@javokhirsielts"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-[#666] dark:text-[#999] hover:text-[#1a1a1a] dark:hover:text-[#fff] transition-colors"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#ff0000]/15 hover:bg-[#ff0000]/25 text-[#1a1a1a] dark:text-[#f5f5f5] transition-colors"
                   >
-                    YouTube <ArrowUpRight className="w-3 h-3" />
+                    <Youtube className="w-3.5 h-3.5 text-[#ff0000]" />
+                    YouTube
                   </a>
-                  <a 
-                    href="https://cambridgeonline.uz/en/registration" 
-                    target="_blank" 
+                  <a
+                    href="https://buymeacoffee.com/umerovjavokhir"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-[#666] dark:text-[#999] hover:text-[#1a1a1a] dark:hover:text-[#fff] transition-colors"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FFDD00]/20 hover:bg-[#FFDD00]/40 text-[#1a1a1a] dark:text-[#f5f5f5] transition-colors"
+                    title="Buy me a coffee"
                   >
-                    Register for course <ArrowUpRight className="w-3 h-3" />
-                  </a>
-                  <a 
-                    href="" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-[#666] dark:text-[#999] hover:text-[#1a1a1a] dark:hover:text-[#fff] transition-colors"
-                  >
-                    Shop <Coffee className="w-3 h-3" />
+                    <Coffee className="w-3.5 h-3.5 text-[#b8860b] dark:text-[#FFDD00]" />
+                    <span>Buy me a coffee</span>
                   </a>
                 </div>
                 </div>
@@ -947,7 +941,7 @@ export default function App() {
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.4 }}
             >
-              <button 
+              <button
                 onClick={() => navigate(null)}
                 className="flex items-center gap-2 text-sm text-[#999] dark:text-[#666] hover:text-[#1a1a1a] dark:hover:text-[#fff] transition-colors mb-12 group cursor-pointer"
               >
@@ -962,7 +956,7 @@ export default function App() {
                 </header>
 
                 <div className="markdown-content">
-                  <ReactMarkdown 
+                  <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     rehypePlugins={[rehypeRaw]}
                     components={{
@@ -997,7 +991,7 @@ export default function App() {
               </article>
 
               {nextArticle && (
-                <button 
+                <button
                   onClick={() => navigate(nextArticle.slug)}
                   className="flex items-center gap-2 text-sm text-[#999] dark:text-[#666] hover:text-[#1a1a1a] dark:hover:text-[#fff] transition-colors mt-12 group cursor-pointer"
                 >
