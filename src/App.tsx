@@ -10,7 +10,7 @@
 
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Coffee, ArrowUpRight, ArrowLeft, Moon, Sun, FileText, Download, ChevronDown, Check, BookOpen, Activity, Send, Youtube, PenLine, Store } from 'lucide-react';
+import { Coffee, ArrowUpRight, ArrowLeft, Moon, Sun, FileText, Download, ChevronDown, Check, BookOpen, Activity, Send, Youtube, PenLine, Store, Search, Mic, FileType, GraduationCap, Pen, Sparkles, X, Headphones, BookMarked, NotebookPen, FileSpreadsheet, ShoppingBag } from 'lucide-react';
 import { annotate } from 'rough-notation';
 import { articles } from './content/articles';
 import { picks, categoryLabel, categoryIcon, PickCategory } from './content/picks';
@@ -29,8 +29,9 @@ export interface Resource {
   filePath: string;
   fileType: 'pdf' | 'docx';
   fileSize: string;
+  tag?: string;
+  featured?: boolean;
 }
-
 export const resources: Resource[] = [
   {
     id: '1',
@@ -39,7 +40,9 @@ export const resources: Resource[] = [
     category: 'arsenal-of-speaking',
     filePath: '/resources/arsenal of speaking/Speak 1.1.pdf',
     fileType: 'pdf',
-    fileSize: '2.2 MB'
+    fileSize: '2.2 MB',
+    tag: 'Speaking',
+    featured: true
   },
   {
     id: '2',
@@ -48,7 +51,9 @@ export const resources: Resource[] = [
     category: 'arsenal-of-writing',
     filePath: '/resources/arsenal of writing/task 1 chunks.docx',
     fileType: 'docx',
-    fileSize: '1.9 MB'
+    fileSize: '1.9 MB',
+    tag: 'Writing',
+    featured: true
   },
   {
     id: '3',
@@ -57,7 +62,9 @@ export const resources: Resource[] = [
     category: 'personal-essays',
     filePath: '/resources/personal essays/my task 2s.docx',
     fileType: 'docx',
-    fileSize: '193 KB'
+    fileSize: '193 KB',
+    tag: 'Essays',
+    featured: false
   }
 ];
 
@@ -211,7 +218,7 @@ export default function App() {
 
     // Initial load
     const initialPath = window.location.pathname.replace('/', '');
-    if (initialPath === 'resources') {
+    if (initialPath === 'essential') {
       setShowResources(true);
     } else if (initialPath === 'activities') {
       setShowActivities(true);
@@ -235,7 +242,7 @@ export default function App() {
     setCurrentSlug(null);
     setShowActivities(false);
     setShowResources(true);
-    window.history.pushState({}, '', '/resources');
+    window.history.pushState({}, '', '/essential');
     window.scrollTo(0, 0);
   };
 
@@ -326,6 +333,8 @@ export default function App() {
   const [articleFilter, setArticleFilter] = useState<string>('all');
   const [articleDropdownOpen, setArticleDropdownOpen] = useState(false);
   const articleDropdownRef = useRef<HTMLDivElement>(null);
+  const [resourceQuery, setResourceQuery] = useState<string>('');
+  const [resourceCategoryFilter, setResourceCategoryFilter] = useState<string>('all');
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -460,103 +469,137 @@ export default function App() {
                 <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
                 Back to home
               </button>
-
               <header className="mb-12">
-                <h1 className="text-3xl font-medium tracking-tight mb-4">Storage</h1>
-                <p className="text-[#666] dark:text-[#999] leading-relaxed">
-                  Welcome to my storage where I keep everything I create along the way. Although I would've not shared, but I'm not your mother, I can't stop your from biting.
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#f97316]/20 to-[#ef4444]/20 flex items-center justify-center">
+                    <GraduationCap className="w-5 h-5 text-[#f97316]" />
+                  </div>
+                  <h1 className="text-3xl font-medium tracking-tight">Essential Files</h1>
+                </div>
+                <p className="text-[#666] dark:text-[#999] leading-relaxed max-w-2xl">
+                  The materials I rely on every day — speaking prompts, writing templates, and my own essays. Built over time, refined through use. Yours, free.
                 </p>
+                <div className="mt-4 flex items-center gap-4 text-xs text-[#999] dark:text-[#666]">
+                  <span className="flex items-center gap-1.5">
+                    <FileText className="w-3.5 h-3.5" />
+                    {resources.length} files
+                  </span>
+                  <span>·</span>
+                  <span className="flex items-center gap-1.5">
+                    <Download className="w-3.5 h-3.5" />
+                    Free downloads
+                  </span>
+                </div>
               </header>
 
-              <section className="mb-12">
-                <h2 className="text-sm font-medium text-[#999] dark:text-[#666] uppercase tracking-wider mb-6">Arsenal of Speaking</h2>
-                <div className="grid gap-4">
-                  {resources.filter(r => r.category === 'arsenal-of-speaking').map((resource) => (
-                    <a
-                      key={resource.id}
-                      href={resource.filePath}
-                      download
-                      className="block p-6 border border-[#f0f0f0] dark:border-[#333] rounded-lg hover:border-[#1a1a1a] dark:hover:border-[#666] transition-all group"
+              {/* Search + Filter bar */}
+              <div className="mb-8 flex flex-col sm:flex-row gap-3">
+                <div className="relative flex-1">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#999] dark:text-[#666] pointer-events-none" />
+                  <input
+                    type="text"
+                    placeholder="Search files…"
+                    value={resourceQuery}
+                    onChange={e => setResourceQuery(e.target.value)}
+                    className="w-full pl-9 pr-9 py-2.5 text-sm rounded-lg border border-[#e8e8e8] dark:border-[#333] bg-white dark:bg-[#222] text-[#1a1a1a] dark:text-[#f5f5f5] placeholder-[#999] dark:placeholder-[#666] focus:outline-none focus:border-[#1a1a1a] dark:focus:border-[#f5f5f5] transition-colors"
+                  />
+                  {resourceQuery && (
+                    <button
+                      onClick={() => setResourceQuery('')}
+                      className="absolute right-2.5 top-1/2 -translate-y-1/2 p-0.5 rounded hover:bg-[#f0f0f0] dark:hover:bg-[#333] transition-colors"
                     >
-                      <div className="flex items-start gap-4">
-                        <div className="w-10 h-10 rounded-lg bg-[#f5f5f5] dark:bg-[#333] flex items-center justify-center shrink-0">
-                          <FileText className="w-5 h-5 text-[#666] dark:text-[#999]" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h3 className="font-medium text-[#1a1a1a] dark:text-[#f5f5f5] group-hover:text-[#000] dark:group-hover:text-[#fff] transition-colors">{resource.title}</h3>
-                          <p className="text-sm text-[#666] dark:text-[#999] mt-1 line-clamp-2">{resource.description}</p>
-                          <div className="flex items-center gap-3 mt-3 text-xs text-[#999] dark:text-[#666]">
-                            <span className="uppercase tracking-wide">{resource.fileType}</span>
-                            <span>•</span>
-                            <span>{resource.fileSize}</span>
-                          </div>
-                        </div>
-                        <Download className="w-5 h-5 text-[#999] dark:text-[#666] group-hover:text-[#1a1a1a] dark:group-hover:text-[#fff] transition-colors shrink-0" />
-                      </div>
-                    </a>
+                      <X className="w-3.5 h-3.5 text-[#999] dark:text-[#666]" />
+                    </button>
+                  )}
+                </div>
+                <div className="flex gap-1.5 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
+                  {[
+                    { id: 'all', label: 'All' },
+                    { id: 'arsenal-of-speaking', label: 'Speaking' },
+                    { id: 'arsenal-of-writing', label: 'Writing' },
+                    { id: 'personal-essays', label: 'Essays' },
+                  ].map(cat => (
+                    <button
+                      key={cat.id}
+                      onClick={() => setResourceCategoryFilter(cat.id)}
+                      className={`px-3 py-2.5 text-xs font-medium rounded-lg whitespace-nowrap transition-colors cursor-pointer ${
+                        resourceCategoryFilter === cat.id
+                          ? 'bg-[#1a1a1a] dark:bg-[#f5f5f5] text-white dark:text-[#1a1a1a]'
+                          : 'bg-[#f5f5f5] dark:bg-[#222] text-[#666] dark:text-[#999] hover:bg-[#ebebeb] dark:hover:bg-[#2a2a2a]'
+                      }`}
+                    >
+                      {cat.label}
+                    </button>
                   ))}
                 </div>
-              </section>
+              </div>
 
-              <section className="mb-12">
-                <h2 className="text-sm font-medium text-[#999] dark:text-[#666] uppercase tracking-wider mb-6">Personal Essays</h2>
-                <div className="grid gap-4">
-                  {resources.filter(r => r.category === 'personal-essays').map((resource) => (
-                    <a
-                      key={resource.id}
-                      href={resource.filePath}
-                      download
-                      className="block p-6 border border-[#f0f0f0] dark:border-[#333] rounded-lg hover:border-[#1a1a1a] dark:hover:border-[#666] transition-all group"
-                    >
-                      <div className="flex items-start gap-4">
-                        <div className="w-10 h-10 rounded-lg bg-[#f5f5f5] dark:bg-[#333] flex items-center justify-center shrink-0">
-                          <FileText className="w-5 h-5 text-[#666] dark:text-[#999]" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h3 className="font-medium text-[#1a1a1a] dark:text-[#f5f5f5] group-hover:text-[#000] dark:group-hover:text-[#fff] transition-colors">{resource.title}</h3>
-                          <p className="text-sm text-[#666] dark:text-[#999] mt-1 line-clamp-2">{resource.description}</p>
-                          <div className="flex items-center gap-3 mt-3 text-xs text-[#999] dark:text-[#666]">
-                            <span className="uppercase tracking-wide">{resource.fileType}</span>
-                            <span>•</span>
-                            <span>{resource.fileSize}</span>
+              {(() => {
+                const filtered = resources.filter(r => {
+                  const matchesCat = resourceCategoryFilter === 'all' || r.category === resourceCategoryFilter;
+                  const q = resourceQuery.trim().toLowerCase();
+                  const matchesQuery = !q || r.title.toLowerCase().includes(q) || r.description.toLowerCase().includes(q) || (r.tag?.toLowerCase().includes(q) ?? false);
+                  return matchesCat && matchesQuery;
+                });
+                if (filtered.length === 0) {
+                  return (
+                    <div className="text-center py-20 border border-dashed border-[#e8e8e8] dark:border-[#333] rounded-xl">
+                      <Search className="w-8 h-8 text-[#ccc] dark:text-[#555] mx-auto mb-3" />
+                      <p className="text-sm text-[#666] dark:text-[#999]">No files match your search.</p>
+                    </div>
+                  );
+                }
+                return (
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {filtered.map((resource) => {
+                      const iconMap = {
+                        'arsenal-of-speaking': { icon: Headphones, color: '#ec4899', bg: 'bg-[#ec4899]/10', gradient: 'from-[#ec4899] to-[#f43f5e]' },
+                        'arsenal-of-writing': { icon: NotebookPen, color: '#3b82f6', bg: 'bg-[#3b82f6]/10', gradient: 'from-[#3b82f6] to-[#6366f1]' },
+                        'personal-essays': { icon: BookMarked, color: '#10b981', bg: 'bg-[#10b981]/10', gradient: 'from-[#10b981] to-[#14b8a6]' },
+                      };
+                      const cfg = iconMap[resource.category];
+                      const Icon = cfg.icon;
+                      return (
+                        <a
+                          key={resource.id}
+                          href={resource.filePath}
+                          download
+                          className="group relative p-5 border border-[#e8e8e8] dark:border-[#333] rounded-xl bg-white dark:bg-[#222] hover:border-[#1a1a1a] dark:hover:border-[#f5f5f5] hover:shadow-md transition-all"
+                        >
+                          {resource.featured && (
+                            <span className="absolute top-3 right-3 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#FFDD00]/30 text-[10px] font-semibold text-[#1a1a1a] dark:text-[#f5f5f5]">
+                              <Sparkles className="w-2.5 h-2.5" />
+                              Top pick
+                            </span>
+                          )}
+                          <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${cfg.gradient} flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 group-hover:rotate-[-4deg] transition-transform duration-300`}>
+                            <Icon className="w-5 h-5 text-white" strokeWidth={2.25} />
                           </div>
-                        </div>
-                        <Download className="w-5 h-5 text-[#999] dark:text-[#666] group-hover:text-[#1a1a1a] dark:group-hover:text-[#fff] transition-colors shrink-0" />
-                      </div>
-                    </a>
-                  ))}
-                </div>
-              </section>
-
-              <section>
-                <h2 className="text-sm font-medium text-[#999] dark:text-[#666] uppercase tracking-wider mb-6">Arsenal of Writing</h2>
-                <div className="grid gap-4">
-                  {resources.filter(r => r.category === 'arsenal-of-writing').map((resource) => (
-                    <a
-                      key={resource.id}
-                      href={resource.filePath}
-                      download
-                      className="block p-6 border border-[#f0f0f0] dark:border-[#333] rounded-lg hover:border-[#1a1a1a] dark:hover:border-[#666] transition-all group"
-                    >
-                      <div className="flex items-start gap-4">
-                        <div className="w-10 h-10 rounded-lg bg-[#f5f5f5] dark:bg-[#333] flex items-center justify-center shrink-0">
-                          <FileText className="w-5 h-5 text-[#666] dark:text-[#999]" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h3 className="font-medium text-[#1a1a1a] dark:text-[#f5f5f5] group-hover:text-[#000] dark:group-hover:text-[#fff] transition-colors">{resource.title}</h3>
-                          <p className="text-sm text-[#666] dark:text-[#999] mt-1 line-clamp-2">{resource.description}</p>
-                          <div className="flex items-center gap-3 mt-3 text-xs text-[#999] dark:text-[#666]">
-                            <span className="uppercase tracking-wide">{resource.fileType}</span>
-                            <span>•</span>
-                            <span>{resource.fileSize}</span>
+                          <h3 className="font-semibold text-[#1a1a1a] dark:text-[#f5f5f5] mb-1.5 group-hover:text-[#000] dark:group-hover:text-[#fff]">
+                            {resource.title}
+                          </h3>
+                          <p className="text-sm text-[#666] dark:text-[#999] leading-relaxed line-clamp-2 mb-4 min-h-[2.5rem]">
+                            {resource.description}
+                          </p>
+                          <div className="flex items-center justify-between pt-3 border-t border-[#f0f0f0] dark:border-[#2a2a2a]">
+                            <div className="flex items-center gap-2 text-xs text-[#999] dark:text-[#666]">
+                              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded font-mono uppercase tracking-wide bg-[#f5f5f5] dark:bg-[#2a2a2a]">
+                                <FileType className="w-3 h-3" />
+                                {resource.fileType}
+                              </span>
+                              <span>{resource.fileSize}</span>
+                            </div>
+                            <span className="inline-flex items-center gap-1 text-xs font-medium text-[#1a1a1a] dark:text-[#f5f5f5] group-hover:gap-1.5 transition-all">
+                              <Download className="w-3.5 h-3.5" />
+                              Download
+                            </span>
                           </div>
-                        </div>
-                        <Download className="w-5 h-5 text-[#999] dark:text-[#666] group-hover:text-[#1a1a1a] dark:group-hover:text-[#fff] transition-colors shrink-0" />
-                      </div>
-                    </a>
-                  ))}
-                </div>
-              </section>
+                        </a>
+                      );
+                    })}
+                  </div>
+                );
+              })()}
             </motion.div>
           ) : showActivities ? (
             <motion.div
@@ -644,48 +687,37 @@ export default function App() {
                   </a>.
                 </p>
 
-                <div className="flex flex-wrap gap-x-2.5 gap-y-2 text-sm">
+                <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
                   <button
                     onClick={navigateToResources}
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#3b82f6]/15 hover:bg-[#3b82f6]/25 text-[#1a1a1a] dark:text-[#f5f5f5] transition-colors cursor-pointer"
+                    className="text-[#666] dark:text-[#999] hover:text-[#1a1a1a] dark:hover:text-[#fff] transition-colors cursor-pointer"
                   >
-                    <FileText className="w-3.5 h-3.5 text-[#3b82f6]" />
-                    Resources
-                  </button>
-                  <button
-                    onClick={navigateToActivities}
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#10b981]/15 hover:bg-[#10b981]/25 text-[#1a1a1a] dark:text-[#f5f5f5] transition-colors cursor-pointer"
-                  >
-                    <Activity className="w-3.5 h-3.5 text-[#10b981]" />
-                    My Activities
+                    Files
                   </button>
                   <a
                     href="https://t.me/javokhirsielts"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#0088cc]/15 hover:bg-[#0088cc]/25 text-[#1a1a1a] dark:text-[#f5f5f5] transition-colors"
+                    className="text-[#666] dark:text-[#999] hover:text-[#1a1a1a] dark:hover:text-[#fff] transition-colors"
                   >
-                    <Send className="w-3.5 h-3.5 text-[#0088cc]" />
                     Telegram
                   </a>
                   <a
                     href="https://www.youtube.com/@javokhirsielts"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#ff0000]/15 hover:bg-[#ff0000]/25 text-[#1a1a1a] dark:text-[#f5f5f5] transition-colors"
+                    className="text-[#666] dark:text-[#999] hover:text-[#1a1a1a] dark:hover:text-[#fff] transition-colors"
                   >
-                    <Youtube className="w-3.5 h-3.5 text-[#ff0000]" />
                     YouTube
                   </a>
                   <a
                     href="https://buymeacoffee.com/umerovjavokhir"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FFDD00]/20 hover:bg-[#FFDD00]/40 text-[#1a1a1a] dark:text-[#f5f5f5] transition-colors"
-                    title="Buy me a coffee"
+                    className="text-[#1a1a1a] dark:text-[#f5f5f5] transition-colors"
+                    title="Course shop"
                   >
-                    <Coffee className="w-3.5 h-3.5 text-[#b8860b] dark:text-[#FFDD00]" />
-                    <span>Buy me a coffee</span>
+                    Course shop
                   </a>
                 </div>
                 </div>
